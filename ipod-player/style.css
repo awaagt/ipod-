@@ -190,6 +190,7 @@ body {
 /* 3D SCENE & FLIP MECHANISM */
 .ipod-3d-scene {
     perspective: 1400px;
+    -webkit-perspective: 1400px;
     width: 370px;
     height: 610px;
     position: relative;
@@ -200,11 +201,15 @@ body {
     height: 100%;
     position: relative;
     transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
     transition: transform 0.75s cubic-bezier(0.4, 0, 0.2, 1);
+    -webkit-transition: -webkit-transform 0.75s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
 }
 
 .ipod-flipper.flipped {
     transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
 }
 
 .ipod-front,
@@ -216,15 +221,20 @@ body {
     height: 100%;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    will-change: transform;
 }
 
 .ipod-front {
     z-index: 2;
-    transform: rotateY(0deg);
+    transform: rotateY(0deg) translateZ(1px);
+    -webkit-transform: rotateY(0deg) translateZ(1px);
 }
 
 .ipod-back {
-    transform: rotateY(180deg);
+    transform: rotateY(180deg) translateZ(1px);
+    -webkit-transform: rotateY(180deg) translateZ(1px);
     z-index: 1;
 }
 
@@ -2745,10 +2755,85 @@ body {
     flex-shrink: 0;
 }
 
-/* 7. RESPONSIVE (MOBILE) */
-@media (max-width: 420px) {
-    .ipod-chassis {
-        transform: scale(0.9);
-        margin: -20px 0;
+/* 7. RESPONSIVE DESIGN (MOBILE & TABLET VIEWPORT ENGINE) */
+@media (max-width: 600px) {
+    body {
+        padding: 16px 8px 95px !important;
+        align-items: flex-start;
+    }
+
+    .desk-canvas {
+        gap: 12px;
+        max-width: 100%;
+    }
+
+    /* Fixed Mobile Action Bar at Bottom of Screen */
+    .quick-toolbar {
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        background: rgba(10, 15, 29, 0.94) !important;
+        backdrop-filter: blur(16px) !important;
+        -webkit-backdrop-filter: blur(16px) !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.14) !important;
+        padding: 10px 14px calc(10px + env(safe-area-inset-bottom, 10px)) !important;
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        justify-content: flex-start !important;
+        align-items: center !important;
+        gap: 8px !important;
+        z-index: 99999 !important;
+        box-shadow: 0 -6px 25px rgba(0, 0, 0, 0.7) !important;
+    }
+
+    .quick-toolbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .tool-pill {
+        flex-shrink: 0 !important;
+        padding: 8px 14px !important;
+        font-size: 11.5px !important;
+        white-space: nowrap !important;
+    }
+
+    .tool-group {
+        flex-shrink: 0 !important;
+    }
+}
+
+@media (max-width: 440px) {
+    .ipod-top-bar {
+        transform: scale(0.88);
+        -webkit-transform: scale(0.88);
+        transform-origin: top center;
+        margin-bottom: -22px;
+    }
+
+    .ipod-3d-scene {
+        transform: scale(0.88);
+        -webkit-transform: scale(0.88);
+        transform-origin: top center;
+        margin-bottom: -65px;
+    }
+}
+
+@media (max-width: 375px) {
+    .ipod-top-bar {
+        transform: scale(0.78);
+        -webkit-transform: scale(0.78);
+        transform-origin: top center;
+        margin-bottom: -24px;
+    }
+
+    .ipod-3d-scene {
+        transform: scale(0.78);
+        -webkit-transform: scale(0.78);
+        transform-origin: top center;
+        margin-bottom: -125px;
     }
 }

@@ -416,24 +416,6 @@ function checkAndEnhanceTrackMetadata(track) {
 async function loadCustomSongsFromDB() {
     try {
         const db = await openDatabase();
-
-        // One-time purge requested by user: clear all existing songs completely
-        const PURGE_TAG = 'ipod_cleared_all_v2';
-        if (!localStorage.getItem(PURGE_TAG)) {
-            try {
-                const tx = db.transaction(STORE_NAME, 'readwrite');
-                tx.objectStore(STORE_NAME).clear();
-            } catch(e) {}
-            localStorage.removeItem('ipod_custom_playlists');
-            localStorage.setItem(PURGE_TAG, 'true');
-            playlist = [];
-            currentTrackIndex = -1;
-            updatePlayerUI();
-            renderCurrentMenu();
-            renderCoverFlow();
-            return;
-        }
-
         const tx = db.transaction(STORE_NAME, 'readonly');
         const store = tx.objectStore(STORE_NAME);
         const req = store.getAll();
@@ -441,7 +423,7 @@ async function loadCustomSongsFromDB() {
             const savedSongs = req.result || [];
             playlist = [];
             for (const s of savedSongs) {
-                const url = URL.createObjectURL(s.blob);
+                const url = s.blob ? URL.createObjectURL(s.blob) : (s.src || "");
                 let cover = s.cover;
                 let lyrics = s.lyrics || null;
 
@@ -462,16 +444,23 @@ async function loadCustomSongsFromDB() {
                     duration: s.duration || "--:--",
                     src: url,
                     isCustom: true,
-                    lyrics: lyrics || [
-                        { time: 0, text: `Memutar: ${s.title}` },
-                        { time: 4, text: `Artis: ${s.artist || "MP3 Lokal"} • Album: ${s.album || "File Komputer"}` }
-                    ]
+                    lyrics: lyrics,
+                    lyricsType: s.lyricsType || (lyrics ? 'synced' : 'plain'),
+                    lyricsOffset: s.lyricsOffset || 0
                 };
 
                 playlist.push(trackObj);
-                // Check if background online lookup can fetch real official cover / lyrics
                 checkAndEnhanceTrackMetadata(trackObj);
             }
+
+            // Selalu pastikan lagu-lagu bawaan resmi (DEFAULT_PLAYLIST) tersedia
+            DEFAULT_PLAYLIST.forEach(def => {
+                const alreadyExists = playlist.some(t => t.title.toLowerCase().trim() === def.title.toLowerCase().trim());
+                if (!alreadyExists) {
+                    playlist.push({ ...def });
+                }
+            });
+
             if (playlist.length > 0) {
                 currentTrackIndex = 0;
                 loadTrack(0);
@@ -484,6 +473,16 @@ async function loadCustomSongsFromDB() {
         };
     } catch (err) {
         console.warn("IndexedDB load note:", err);
+        DEFAULT_PLAYLIST.forEach(def => {
+            const alreadyExists = playlist.some(t => t.title.toLowerCase().trim() === def.title.toLowerCase().trim());
+            if (!alreadyExists) {
+                playlist.push({ ...def });
+            }
+        });
+        currentTrackIndex = playlist.length > 0 ? 0 : -1;
+        if (currentTrackIndex >= 0) loadTrack(0);
+        renderCurrentMenu();
+        renderCoverFlow();
     }
 }
 
@@ -724,8 +723,181 @@ function toggleClickSound() {
 }
 
 // --- 4. PLAYLIST & MUSIC LIBRARY DATA ---
-// Lagu bawaan dihapus sepenuhnya. Hanya file MP3 lokal yang diunggah yang ada di iPod.
-const DEFAULT_PLAYLIST = [];
+const DEFAULT_PLAYLIST = [
+    {
+        title: "Helena",
+        artist: "My Chemical Romance",
+        album: "Three Cheers for Sweet Revenge",
+        cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/bf/16/ef/bf16ef80-bfd7-8a60-9df5-0fa225d31515/093624861263.jpg/600x600bb.jpg",
+        duration: "03:24",
+        src: "assets/audio/helena.mp3",
+        lyrics: CURATED_BEAT_LYRICS['helena'],
+        lyricsType: 'synced',
+        isDefault: true
+    },
+    {
+        title: "Cancer",
+        artist: "My Chemical Romance",
+        album: "The Black Parade",
+        cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/28/bf/a1/28bfa17c-0ff3-f8d2-45e0-5ca6855177df/093624933595.jpg/600x600bb.jpg",
+        duration: "02:22",
+        src: "assets/audio/cancer.mp3",
+        lyrics: [
+            { time: 0, text: "Turn away" },
+            { time: 5, text: "If you could get me a drink of water" },
+            { time: 11, text: "'Cause my lips are chapped and faded" },
+            { time: 16, text: "Call my aunt Marie" },
+            { time: 21, text: "Help her gather all my things" },
+            { time: 26, text: "And bury me in all my favorite colors" },
+            { time: 31, text: "My sisters and my brothers, still" },
+            { time: 37, text: "I will not kiss you" },
+            { time: 42, text: "'Cause the hardest part of this is leaving you" },
+            { time: 53, text: "Now turn away" },
+            { time: 58, text: "'Cause I'm awful just to see" },
+            { time: 64, text: "'Cause all my hairs have abandoned all my body" },
+            { time: 72, text: "Oh, my agony" },
+            { time: 76, text: "Know that I will never marry" },
+            { time: 82, text: "Baby, I'm just soggy from the chemo" },
+            { time: 87, text: "Standing by the street" },
+            { time: 92, text: "And that I will never marry" },
+            { time: 97, text: "Baby, I'm just soggy from the chemo" },
+            { time: 102, text: "Standing by the street" },
+            { time: 108, text: "So turn away" },
+            { time: 113, text: "'Cause the hardest part of this is leaving you" },
+            { time: 125, text: "Yes, the hardest part of this" },
+            { time: 132, text: "Is leaving you" }
+        ],
+        lyricsType: 'synced',
+        isDefault: true
+    },
+    {
+        title: "Blinding Lights",
+        artist: "The Weeknd",
+        album: "After Hours",
+        cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/8a/a5/d8/8aa5d8df-1a89-d9fc-e038-f1f310f81d13/20UMGIM08226.rgb.jpg/600x600bb.jpg",
+        duration: "03:20",
+        src: "assets/audio/blinding-lights.mp3",
+        lyrics: [
+            { time: 0, text: "Yeah" },
+            { time: 26, text: "I've been tryin' to call" },
+            { time: 29, text: "I've been on my own for long enough" },
+            { time: 33, text: "Maybe you can show me how to love, maybe" },
+            { time: 39, text: "I'm going through withdrawals" },
+            { time: 42, text: "You don't even have to do too much" },
+            { time: 46, text: "You can turn me on with just a touch, baby" },
+            { time: 52, text: "I look around and Sin City's cold and empty" },
+            { time: 57, text: "No one's around to judge me" },
+            { time: 60, text: "I can't see clearly when you're gone" },
+            { time: 65, text: "I said, ooh, I'm blinded by the lights" },
+            { time: 72, text: "No, I can't sleep until I feel your touch" },
+            { time: 78, text: "I said, ooh, I'm drowning in the night" },
+            { time: 85, text: "Oh, when I'm like this, you're the one I trust" }
+        ],
+        lyricsType: 'synced',
+        isDefault: true
+    },
+    {
+        title: "Attention",
+        artist: "Charlie Puth",
+        album: "Voicenotes",
+        cover: "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/09/20/9c/09209c1d-15ba-68ea-e49d-318e8d89a246/075679883506.jpg/600x600bb.jpg",
+        duration: "03:28",
+        src: "assets/audio/attention.mp3",
+        lyrics: [
+            { time: 0, text: "Woah-oh, hm" },
+            { time: 10, text: "You've been runnin' 'round, runnin' 'round throwin' that dirt on my name" },
+            { time: 15, text: "'Cause you knew that I, knew that I'd call you up" },
+            { time: 20, text: "You've been goin' 'round, goin' 'round every party in LA" },
+            { time: 25, text: "'Cause you knew that I, knew that I'd be at one, oh" },
+            { time: 30, text: "I know that dress is karma, perfume regret" },
+            { time: 35, text: "You got me thinkin' 'bout when you were mine, ooh" },
+            { time: 40, text: "And now I'm all up on ya, what you expect?" },
+            { time: 45, text: "But you're not comin' home with me tonight" },
+            { time: 49, text: "You just want attention, you don't want my heart" },
+            { time: 54, text: "Maybe you just hate the thought of me with someone new" },
+            { time: 59, text: "Yeah, you just want attention, I knew from the start" },
+            { time: 64, text: "You're just makin' sure I'm never gettin' over you, oh" }
+        ],
+        lyricsType: 'synced',
+        isDefault: true
+    },
+    {
+        title: "Call Out My Name",
+        artist: "The Weeknd",
+        album: "My Dear Melancholy,",
+        cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/44/28/aa/4428aac3-fcbf-9008-8686-2a6d713cbe9a/18UMGIM19659.rgb.jpg/600x600bb.jpg",
+        duration: "03:48",
+        src: "assets/audio/call-out-my-name.mp3",
+        lyrics: [
+            { time: 0, text: "We found each other" },
+            { time: 6, text: "I helped you out of a broken place" },
+            { time: 13, text: "You gave me comfort" },
+            { time: 19, text: "But falling for you was my mistake" },
+            { time: 25, text: "I put you on top, I put you on top" },
+            { time: 32, text: "I claimed you so proud and openly" },
+            { time: 38, text: "And when times were rough, when times were rough" },
+            { time: 44, text: "I made sure I held you close to me" },
+            { time: 50, text: "So call out my name" },
+            { time: 56, text: "Call out my name when I kiss you so gently" },
+            { time: 63, text: "I want you to stay" },
+            { time: 69, text: "I want you to stay, even though you don't want me" },
+            { time: 76, text: "Girl, why can't you wait?" },
+            { time: 82, text: "Girl, why can't you wait 'til I fall out of love?" }
+        ],
+        lyricsType: 'synced',
+        isDefault: true
+    },
+    {
+        title: "Say You Won't Let Go",
+        artist: "James Arthur",
+        album: "Back from the Edge",
+        cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/18/88/ce/1888ce04-58bc-6e54-6e01-e2db8bfec0e7/886446132714.jpg/600x600bb.jpg",
+        duration: "03:31",
+        src: "assets/audio/say-you-wont-let-go.mp3",
+        lyrics: [
+            { time: 0, text: "I met you in the dark, you lit me up" },
+            { time: 5, text: "You made me feel as though I was enough" },
+            { time: 11, text: "We danced the night away, we drank too much" },
+            { time: 16, text: "I held your hair back when you were throwin' up" },
+            { time: 22, text: "Then you smiled over your shoulder" },
+            { time: 26, text: "For a minute, I was stone-cold sober" },
+            { time: 31, text: "I pulled you closer to my chest" },
+            { time: 36, text: "And you asked me to stay over" },
+            { time: 41, text: "I said, I already told ya" },
+            { time: 46, text: "I think that you should get some rest" },
+            { time: 51, text: "I knew I loved you then, but you'd never know" },
+            { time: 57, text: "'Cause I played it cool when I was scared of letting go" },
+            { time: 62, text: "I know I needed you, but I never showed" },
+            { time: 69, text: "But I wanna stay with you until we're grey and old" },
+            { time: 75, text: "Just say you won't let go" }
+        ],
+        lyricsType: 'synced',
+        isDefault: true
+    },
+    {
+        title: "Timeless",
+        artist: "The Weeknd & Playboi Carti",
+        album: "Hurry Up Tomorrow",
+        cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/d5/ae/30/d5ae300f-d5b7-7ff7-f050-0255dca0869a/24UMGIM88497.rgb.jpg/600x600bb.jpg",
+        duration: "04:16",
+        src: "assets/audio/timeless.mp3",
+        lyrics: [
+            { time: 0, text: "Ever since I was a jit, knew I was the shit" },
+            { time: 4, text: "Shorty pull up to the crib, told her, 'Bust it'" },
+            { time: 8, text: "Ooh, she want it, she want the life" },
+            { time: 12, text: "I got timeless motion, timeless vibe" },
+            { time: 20, text: "City on fire, girl, it's getting late" },
+            { time: 26, text: "Double-cup full, got me in a daze" },
+            { time: 32, text: "She say she love me, but I know she fake" },
+            { time: 38, text: "Timeless, timeless, everything we make" },
+            { time: 45, text: "XO, they don't know what we know" },
+            { time: 52, text: "Pull up with the squad, fly like a hero" },
+            { time: 58, text: "Timeless energy, never go to zero" }
+        ],
+        lyricsType: 'synced',
+        isDefault: true
+    }
+];
 
 let playlist = [];
 let currentTrackIndex = -1;
@@ -1087,6 +1259,7 @@ const MENUS = {
             { label: `Shuffle: ${isShuffle ? 'ON' : 'OFF'}`, action: () => toggleShuffleMode() },
             { label: `Clicker Sound: ${clickSoundEnabled ? 'ON' : 'OFF'}`, action: () => toggleClickSound() },
             { label: "Hapus Lagu (Pilih)...", target: "deleteSongMenu" },
+            { label: "Pulihkan Lagu Bawaan", action: () => resetDefaultSongs() },
             { label: "Hapus Semua Lagu", action: () => clearAllSongs() },
             { label: "About iPod", action: () => openAboutView() }
         ]
@@ -3266,6 +3439,26 @@ async function clearAllSongs(silent = false) {
 
 function resetPlaylist() {
     clearAllSongs();
+}
+
+async function resetDefaultSongs() {
+    playMechanicalClick();
+    if (confirm("Muat kembali lagu bawaan (Helena, Cancer, Blinding Lights) ke dalam iPod?")) {
+        DEFAULT_PLAYLIST.forEach(def => {
+            const exists = playlist.some(t => t.title.toLowerCase() === def.title.toLowerCase());
+            if (!exists) {
+                playlist.push({ ...def });
+            }
+        });
+        if (currentTrackIndex === -1 && playlist.length > 0) {
+            currentTrackIndex = 0;
+            loadTrack(0);
+        }
+        updatePlayerUI();
+        renderCurrentMenu();
+        renderCoverFlow();
+        alert("Lagu bawaan berhasil dimuat ke memori iPod!");
+    }
 }
 
 // --- PROGRESSIVE WEB APP (PWA) REGISTRATION & INSTALLATION ---

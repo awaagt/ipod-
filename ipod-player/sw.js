@@ -1,11 +1,16 @@
 // Service Worker for iPod Classic Simulator PWA
-const CACHE_NAME = 'ipod-classic-v1';
+const CACHE_NAME = 'ipod-classic-v3';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
   './style.css',
   './app.js',
-  './manifest.json'
+  './manifest.json',
+  './assets/theme-green-creation.jpg',
+  './assets/theme-green-deftones.jpg',
+  './assets/theme-purple-aurora.jpg',
+  './assets/theme-purple-blackhole.jpg',
+  './assets/theme-purple-drift.jpg'
 ];
 
 self.addEventListener('install', (e) => {

@@ -995,6 +995,10 @@ function toggleIpodFlip() {
     if (ipodFlipper) {
         ipodFlipper.classList.toggle('flipped', isIpodFlipped);
     }
+    const btnFlipText = document.getElementById('btn-flip-text');
+    if (btnFlipText) {
+        btnFlipText.textContent = isIpodFlipped ? 'Lihat Depan' : 'Putar Bodi';
+    }
 }
 
 const menuHeaderTitle = document.getElementById('menu-header-title');

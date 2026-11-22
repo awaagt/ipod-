@@ -194,6 +194,7 @@ body {
     width: 370px;
     height: 610px;
     position: relative;
+    margin: 0 auto;
 }
 
 .ipod-flipper {
@@ -202,8 +203,8 @@ body {
     position: relative;
     transform-style: preserve-3d;
     -webkit-transform-style: preserve-3d;
-    transition: transform 0.75s cubic-bezier(0.4, 0, 0.2, 1);
-    -webkit-transition: -webkit-transform 0.75s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+    -webkit-transition: -webkit-transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
     will-change: transform;
 }
 
@@ -214,35 +215,69 @@ body {
 
 .ipod-front,
 .ipod-back {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    transform-style: preserve-3d;
-    -webkit-transform-style: preserve-3d;
-    will-change: transform;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 370px !important;
+    height: 610px !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    -webkit-backface-visibility: hidden !important;
+    backface-visibility: hidden !important;
+    transform-style: preserve-3d !important;
+    -webkit-transform-style: preserve-3d !important;
+    will-change: transform, opacity;
 }
 
 .ipod-front {
     z-index: 2;
     transform: rotateY(0deg) translateZ(1px);
     -webkit-transform: rotateY(0deg) translateZ(1px);
+    transition: opacity 0.25s ease 0.15s, visibility 0.25s ease 0.15s;
 }
 
 .ipod-back {
     transform: rotateY(180deg) translateZ(1px);
     -webkit-transform: rotateY(180deg) translateZ(1px);
     z-index: 1;
+    transition: opacity 0.25s ease 0.15s, visibility 0.25s ease 0.15s;
+}
+
+/* KETIKA BODI DIBALIK (FLIPPED): Sembunyikan layar depan secara total */
+.ipod-flipper.flipped .ipod-front {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    z-index: 0 !important;
+}
+
+/* KETIKA BODI NORMAL (DEPAN): Sembunyikan bodi belakang agar tidak tumpang tindih */
+.ipod-flipper:not(.flipped) .ipod-back {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    z-index: 0 !important;
+}
+
+.ipod-flipper.flipped .ipod-back {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    z-index: 10 !important;
+}
+
+.ipod-flipper:not(.flipped) .ipod-front {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    z-index: 10 !important;
 }
 
 /* 2. IPOD HARDWARE CHASSIS (BLACK CHROME EDITION) */
 .ipod-chassis {
-    position: relative;
     width: 370px;
     height: 610px;
+    box-sizing: border-box;
     background: linear-gradient(155deg, #1c202a 0%, #10131a 40%, #07090d 100%);
     border-radius: 38px;
     padding: 28px 24px 22px;
@@ -2168,7 +2203,6 @@ body {
         inset 0 -2px 6px rgba(0, 0, 0, 0.6) !important;
     cursor: pointer;
     overflow: hidden;
-    position: relative;
     user-select: none;
 }
 

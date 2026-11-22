@@ -1,5 +1,5 @@
 // Service Worker for iPod Classic Simulator PWA
-const CACHE_NAME = 'ipod-classic-v3';
+const CACHE_NAME = 'ipod-classic-v4';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',

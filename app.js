@@ -320,6 +320,236 @@ const CURATED_BEAT_LYRICS = {
         { time: 182.34, text: "Things are better if I stay" },
         { time: 185.78, text: "So long and goodnight" },
         { time: 189.45, text: "So long and goodnight" }
+    ],
+    'cancer': [
+        { time: 0.00, text: "Turn away" },
+        { time: 4.80, text: "If you could get me a drink of water" },
+        { time: 10.50, text: "'Cause my lips are chapped and faded" },
+        { time: 15.80, text: "Call my aunt Marie" },
+        { time: 20.90, text: "Help her gather all my things" },
+        { time: 26.20, text: "And bury me in all my favorite colors" },
+        { time: 31.50, text: "My sisters and my brothers, still" },
+        { time: 37.40, text: "I will not kiss you" },
+        { time: 42.60, text: "'Cause the hardest part of this is leaving you" },
+        { time: 53.80, text: "Now turn away" },
+        { time: 58.60, text: "'Cause I'm awful just to see" },
+        { time: 64.20, text: "'Cause all my hairs have abandoned all my body" },
+        { time: 71.80, text: "Oh, my agony" },
+        { time: 76.40, text: "Know that I will never marry" },
+        { time: 81.80, text: "Baby, I'm just soggy from the chemo" },
+        { time: 87.20, text: "Standing by the street" },
+        { time: 92.40, text: "And that I will never marry" },
+        { time: 97.50, text: "Baby, I'm just soggy from the chemo" },
+        { time: 102.80, text: "Standing by the street" },
+        { time: 108.50, text: "So turn away" },
+        { time: 114.00, text: "'Cause the hardest part of this is leaving you" },
+        { time: 125.50, text: "Yes, the hardest part of this..." },
+        { time: 132.20, text: "...Is leaving you" }
+    ],
+    'blinding': [
+        { time: 0.00, text: "♪ (Synth Wave Intro) ♪" },
+        { time: 15.50, text: "Yeah" },
+        { time: 26.80, text: "I've been tryna call" },
+        { time: 29.80, text: "I've been on my own for long enough" },
+        { time: 33.70, text: "Maybe you can show me how to love, maybe" },
+        { time: 39.90, text: "I'm going through withdrawals" },
+        { time: 43.00, text: "You don't even have to do too much" },
+        { time: 46.80, text: "You can turn me on with just a touch, baby" },
+        { time: 52.80, text: "I look around and Sin City's cold and empty" },
+        { time: 57.20, text: "No one's around to judge me" },
+        { time: 60.50, text: "I can't see clearly when you're gone" },
+        { time: 65.80, text: "I said, ooh, I'm blinded by the lights" },
+        { time: 72.70, text: "No, I can't sleep until I feel your touch" },
+        { time: 78.90, text: "I said, ooh, I'm drowning in the night" },
+        { time: 85.80, text: "Oh, when I'm like this, you're the one I trust" },
+        { time: 92.80, text: "(Hey, hey, hey)" },
+        { time: 98.80, text: "I'm running out of time" },
+        { time: 102.00, text: "'Cause I can see the sun light up the sky" },
+        { time: 105.90, text: "So I hit the road in overdrive, baby, oh" },
+        { time: 111.90, text: "The city's cold and empty" },
+        { time: 116.20, text: "No one's around to judge me" },
+        { time: 119.60, text: "I can't see clearly when you're gone" },
+        { time: 124.90, text: "I said, ooh, I'm blinded by the lights" },
+        { time: 131.80, text: "No, I can't sleep until I feel your touch" },
+        { time: 138.00, text: "I said, ooh, I'm drowning in the night" },
+        { time: 144.90, text: "Oh, when I'm like this, you're the one I trust" },
+        { time: 152.00, text: "I'm just walking by to let you know (By to let you know)" },
+        { time: 156.50, text: "I could never say it on the phone (Say it on the phone)" },
+        { time: 160.00, text: "Will never let you go this time (Ooh)" },
+        { time: 164.20, text: "I said, ooh, I'm blinded by the lights" },
+        { time: 171.10, text: "No, I can't sleep until I feel your touch" },
+        { time: 177.30, text: "(Hey, hey, hey)" },
+        { time: 180.00, text: "I said, ooh, I'm blinded by the lights" },
+        { time: 186.90, text: "No, I can't sleep until I feel your touch" }
+    ],
+    'attention': [
+        { time: 0.00, text: "♪ (Bass Groove Intro) ♪" },
+        { time: 1.80, text: "Woah-oh, hm" },
+        { time: 9.50, text: "You've been runnin' 'round, runnin' 'round, runnin' 'round throwin' that dirt on my name" },
+        { time: 14.80, text: "'Cause you knew that I, knew that I, knew that I'd call you up" },
+        { time: 19.40, text: "You've been goin' 'round, goin' 'round, goin' 'round every party in LA" },
+        { time: 24.50, text: "'Cause you knew that I, knew that I, knew that I'd be at one, oh" },
+        { time: 29.80, text: "I know that dress is karma, perfume regret" },
+        { time: 34.50, text: "You got me thinkin' 'bout when you were mine, ooh" },
+        { time: 39.40, text: "And now I'm all up on ya, what you expect?" },
+        { time: 44.20, text: "But you're not comin' home with me tonight" },
+        { time: 48.80, text: "You just want attention, you don't want my heart" },
+        { time: 53.60, text: "Maybe you just hate the thought of me with someone new" },
+        { time: 58.50, text: "Yeah, you just want attention, I knew from the start" },
+        { time: 63.40, text: "You're just makin' sure I'm never gettin' over you, oh" },
+        { time: 68.50, text: "You've been runnin' 'round, runnin' 'round, runnin' 'round throwin' that dirt on my name" },
+        { time: 73.60, text: "'Cause you knew that I, knew that I, knew that I'd call you up" },
+        { time: 78.40, text: "Baby, now that we're, now that we're, now that we're right here standin' face to face" },
+        { time: 83.20, text: "You already know, 'ready know, 'ready know that you won, oh" },
+        { time: 88.60, text: "I know that dress is karma, perfume regret" },
+        { time: 93.40, text: "You got me thinkin' 'bout when you were mine, ooh" },
+        { time: 98.20, text: "And now I'm all up on ya, what you expect?" },
+        { time: 103.10, text: "But you're not comin' home with me tonight" },
+        { time: 107.80, text: "You just want attention, you don't want my heart" },
+        { time: 112.50, text: "Maybe you just hate the thought of me with someone new" },
+        { time: 117.40, text: "Yeah, you just want attention, I knew from the start" },
+        { time: 122.20, text: "You're just makin' sure I'm never gettin' over you, oh" },
+        { time: 127.50, text: "What are you doin' to me? What are you doin', huh? (What are you doin'?)" },
+        { time: 132.40, text: "What are you doin' to me? What are you doin', huh? (What are you doin'?)" },
+        { time: 137.30, text: "What are you doin' to me? What are you doin', huh? (What are you doin'?)" },
+        { time: 142.20, text: "What are you doin' to me? What are you doin', huh?" },
+        { time: 147.40, text: "I know that dress is karma, perfume regret" },
+        { time: 152.20, text: "You got me thinkin' 'bout when you were mine" },
+        { time: 157.10, text: "And now I'm all up on ya, what you expect?" },
+        { time: 162.00, text: "But you're not comin' home with me tonight" },
+        { time: 166.80, text: "You just want attention, you don't want my heart" },
+        { time: 171.50, text: "Maybe you just hate the thought of me with someone new" },
+        { time: 176.40, text: "Yeah, you just want attention, I knew from the start" },
+        { time: 181.20, text: "You're just makin' sure I'm never gettin' over you, oh" },
+        { time: 186.50, text: "(What are you doin' to me?)" },
+        { time: 188.80, text: "Yeah, you're just makin' sure I'm never gettin' over you" },
+        { time: 193.70, text: "(What are you doin' to me?)" },
+        { time: 196.20, text: "Yeah, you just want attention" }
+    ],
+    'call out': [
+        { time: 0.00, text: "♪ (Dark Atmosphere Intro) ♪" },
+        { time: 4.50, text: "We found each other" },
+        { time: 10.80, text: "I helped you out of a broken place" },
+        { time: 17.40, text: "You gave me comfort" },
+        { time: 23.80, text: "But falling for you was my mistake" },
+        { time: 30.20, text: "I put you on top, I put you on top" },
+        { time: 36.50, text: "I claimed you so proud and openly" },
+        { time: 43.00, text: "And when times were rough, when times were rough" },
+        { time: 49.20, text: "I made sure I held you close to me" },
+        { time: 54.80, text: "So call out my name (Call out my name)" },
+        { time: 60.80, text: "Call out my name when I kiss you so gently" },
+        { time: 67.40, text: "I want you to stay (I want you to stay)" },
+        { time: 73.80, text: "I want you to stay, even though you don't want me" },
+        { time: 80.50, text: "Girl, why can't you wait? (Why can't you wait, baby?)" },
+        { time: 86.80, text: "Girl, why can't you wait 'til I fall out of love?" },
+        { time: 93.20, text: "Won't you call out my name? (Call out my name)" },
+        { time: 99.60, text: "Girl, call out my name, and I'll be on my way and" },
+        { time: 105.90, text: "I'll be on my..." },
+        { time: 107.80, text: "I said I didn't feel nothing, baby, but I lied" },
+        { time: 114.20, text: "I almost cut a piece of myself for your life" },
+        { time: 120.50, text: "Guess I was just another pit stop" },
+        { time: 124.20, text: "'Til you made up your mind" },
+        { time: 126.90, text: "You just wasted my time" },
+        { time: 131.20, text: "You're on top, I put you on top" },
+        { time: 137.50, text: "I claimed you so proud and openly, baby" },
+        { time: 144.00, text: "And when times were rough, when times were rough" },
+        { time: 150.20, text: "I made sure I held you close to me" },
+        { time: 155.80, text: "So call out my name (Call out my name, baby)" },
+        { time: 161.80, text: "So call out my name when I kiss you so gently" },
+        { time: 168.40, text: "I want you to stay (I want you to stay)" },
+        { time: 174.80, text: "I want you to stay, even though you don't want me" },
+        { time: 181.50, text: "Girl, why can't you wait? (Girl, why can't you wait 'til I)" },
+        { time: 187.80, text: "Girl, why can't you wait 'til I fall out of love?" },
+        { time: 194.20, text: "Won't you call out my name? (Say call out my name, baby)" },
+        { time: 200.60, text: "Just call out my name, and I'll be on my way and" },
+        { time: 207.20, text: "I'll be on my..." },
+        { time: 210.00, text: "On my way, on my way" },
+        { time: 216.50, text: "On my way, on my way, ooh" }
+    ],
+    'say you won': [
+        { time: 0.00, text: "♪ (Acoustic Guitar Intro) ♪" },
+        { time: 5.50, text: "I met you in the dark, you lit me up" },
+        { time: 10.80, text: "You made me feel as though I was enough" },
+        { time: 16.20, text: "We danced the night away, we drank too much" },
+        { time: 21.50, text: "I held your hair back when you were throwin' up" },
+        { time: 27.20, text: "Then you smiled over your shoulder" },
+        { time: 30.80, text: "For a minute, I was stone-cold sober" },
+        { time: 36.20, text: "I pulled you closer to my chest" },
+        { time: 41.50, text: "And you asked me to stay over" },
+        { time: 44.80, text: "I said, I already told ya" },
+        { time: 49.20, text: "I think that you should get some rest" },
+        { time: 53.80, text: "I knew I loved you then, but you'd never know" },
+        { time: 59.20, text: "'Cause I played it cool when I was scared of letting go" },
+        { time: 64.50, text: "I know I needed you, but I never showed" },
+        { time: 70.00, text: "But I wanna stay with you until we're grey and old" },
+        { time: 75.50, text: "Just say you won't let go" },
+        { time: 81.00, text: "Just say you won't let go" },
+        { time: 86.50, text: "I'll wake you up with some breakfast in bed" },
+        { time: 91.80, text: "I'll bring you coffee with a kiss on your head" },
+        { time: 97.20, text: "And I'll take the kids to school, wave them goodbye" },
+        { time: 102.50, text: "And I'll thank my lucky stars for that night" },
+        { time: 108.20, text: "When you looked over your shoulder" },
+        { time: 111.80, text: "For a minute, I forget that I'm older" },
+        { time: 117.20, text: "I wanna dance with you right now, oh" },
+        { time: 122.50, text: "And you look as beautiful as ever" },
+        { time: 125.80, text: "And I swear that everyday you'll get better" },
+        { time: 130.20, text: "You make me feel this way somehow" },
+        { time: 134.80, text: "I'm so in love with you, and I hope you know" },
+        { time: 140.20, text: "Darling, your love is more than worth its weight in gold" },
+        { time: 145.50, text: "We've come so far, my dear, look how we've grown" },
+        { time: 151.00, text: "And I wanna stay with you until we're grey and old" },
+        { time: 156.50, text: "Just say you won't let go" },
+        { time: 162.00, text: "Just say you won't let go" },
+        { time: 167.50, text: "I wanna live with you even when we're ghosts" },
+        { time: 172.80, text: "'Cause you were always there for me when I needed you most" },
+        { time: 178.20, text: "I'm gonna love you 'til my lungs give out" },
+        { time: 183.50, text: "I made a promise that I won't let down" },
+        { time: 188.80, text: "Until we're grey and old" },
+        { time: 194.20, text: "Just say you won't let go" },
+        { time: 199.50, text: "Just say you won't let go" }
+    ],
+    'timeless': [
+        { time: 0.00, text: "♪ (Intro - Synth Ambient) ♪" },
+        { time: 8.50, text: "Ever since I was a jit, knew I was the shit" },
+        { time: 12.80, text: "Shorty pull up to the crib, told her, 'Bust it'" },
+        { time: 17.20, text: "Ooh, she want it, she want the life" },
+        { time: 21.50, text: "I got timeless motion, timeless vibe" },
+        { time: 26.00, text: "Yeah, she wanna pop out, she wanna show out" },
+        { time: 30.20, text: "Pull up in the drop-top, finna go all out" },
+        { time: 34.50, text: "Everything we do, they wanna find out" },
+        { time: 39.00, text: "City on fire, girl, it's getting late" },
+        { time: 43.20, text: "Double-cup full, got me in a daze" },
+        { time: 47.50, text: "She say she love me, but I know she fake" },
+        { time: 51.80, text: "Timeless, timeless, everything we make" },
+        { time: 56.20, text: "XO, they don't know what we know" },
+        { time: 60.50, text: "Pull up with the squad, fly like a hero" },
+        { time: 64.80, text: "Timeless energy, never go to zero" },
+        { time: 70.00, text: "[The Weeknd Verse]" },
+        { time: 74.20, text: "Sing it to me like you love me, babe" },
+        { time: 78.50, text: "Even when you know you cannot stay" },
+        { time: 83.00, text: "I've been running through the darkest haze" },
+        { time: 87.20, text: "Looking for your light to guide the way" },
+        { time: 91.80, text: "Tell me what you really want from me" },
+        { time: 96.00, text: "Is it love or just the fantasy?" },
+        { time: 100.50, text: "Everything is timeless when we speak" },
+        { time: 105.00, text: "Timeless, timeless in the deep" },
+        { time: 109.50, text: "She said, 'Baby, can you hold me close?'" },
+        { time: 113.80, text: "'Cause you're the one that matters most" },
+        { time: 118.20, text: "Drinking till the morning, toast" },
+        { time: 122.50, text: "We live the life they want the most" },
+        { time: 127.00, text: "[Chorus - Both]" },
+        { time: 131.20, text: "Timeless motion, timeless vibe" },
+        { time: 135.50, text: "Ooh, she want it, she want the life" },
+        { time: 140.00, text: "Ever since I was a jit, knew I was the shit" },
+        { time: 144.20, text: "Shorty pull up to the crib, told her, 'Bust it'" },
+        { time: 148.80, text: "Timeless, timeless, through the night" },
+        { time: 155.00, text: "Everything we touch ignites" },
+        { time: 162.50, text: "XO, they don't know what we know" },
+        { time: 168.00, text: "Timeless energy, never go to zero" },
+        { time: 175.00, text: "Never go to zero" },
+        { time: 185.00, text: "Timeless, timeless" },
+        { time: 198.00, text: "♪ (Outro Synth Vibe) ♪" },
+        { time: 225.00, text: "XO forever, timeless" }
     ]
 };
 
@@ -394,10 +624,18 @@ function checkAndEnhanceTrackMetadata(track) {
         });
     }
 
-    // 2. Check if lyrics need real online synchronized lyrics
-    const isHelena = track.title && track.title.toLowerCase().includes('helena');
-    if (isHelena && (!track.lyrics || track.lyrics[0].time < 3.0)) {
-        track.lyrics = JSON.parse(JSON.stringify(CURATED_BEAT_LYRICS['helena']));
+    // 2. Check curated beat-matched lyrics for all default songs
+    const lowTitle = (track.title || "").toLowerCase();
+    let matchedCurated = null;
+    for (const [key, curatedList] of Object.entries(CURATED_BEAT_LYRICS)) {
+        if (lowTitle.includes(key)) {
+            matchedCurated = curatedList;
+            break;
+        }
+    }
+
+    if (matchedCurated) {
+        track.lyrics = JSON.parse(JSON.stringify(matchedCurated));
         track.lyricsType = 'synced';
         if (track.id) updateSongInDB(track.id, { lyrics: track.lyrics, lyricsType: 'synced' });
         if (currentView === 'lyrics' && playlist[currentTrackIndex] === track) renderLyrics();
@@ -453,11 +691,17 @@ async function loadCustomSongsFromDB() {
                 checkAndEnhanceTrackMetadata(trackObj);
             }
 
-            // Selalu pastikan lagu-lagu bawaan resmi (DEFAULT_PLAYLIST) tersedia
+            // Selalu pastikan lagu-lagu bawaan resmi (DEFAULT_PLAYLIST) tersedia dan liriknya sinkron
             DEFAULT_PLAYLIST.forEach(def => {
-                const alreadyExists = playlist.some(t => t.title.toLowerCase().trim() === def.title.toLowerCase().trim());
-                if (!alreadyExists) {
+                const found = playlist.find(t => t.title.toLowerCase().trim() === def.title.toLowerCase().trim());
+                if (!found) {
                     playlist.push({ ...def });
+                } else {
+                    found.lyrics = def.lyrics;
+                    found.lyricsType = 'synced';
+                    found.src = def.src;
+                    found.cover = def.cover;
+                    found.duration = def.duration;
                 }
             });
 
@@ -729,7 +973,7 @@ const DEFAULT_PLAYLIST = [
         artist: "My Chemical Romance",
         album: "Three Cheers for Sweet Revenge",
         cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/bf/16/ef/bf16ef80-bfd7-8a60-9df5-0fa225d31515/093624861263.jpg/600x600bb.jpg",
-        duration: "03:24",
+        duration: "03:31",
         src: "assets/audio/helena.mp3",
         lyrics: CURATED_BEAT_LYRICS['helena'],
         lyricsType: 'synced',
@@ -740,33 +984,9 @@ const DEFAULT_PLAYLIST = [
         artist: "My Chemical Romance",
         album: "The Black Parade",
         cover: "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/28/bf/a1/28bfa17c-0ff3-f8d2-45e0-5ca6855177df/093624933595.jpg/600x600bb.jpg",
-        duration: "02:22",
+        duration: "02:27",
         src: "assets/audio/cancer.mp3",
-        lyrics: [
-            { time: 0, text: "Turn away" },
-            { time: 5, text: "If you could get me a drink of water" },
-            { time: 11, text: "'Cause my lips are chapped and faded" },
-            { time: 16, text: "Call my aunt Marie" },
-            { time: 21, text: "Help her gather all my things" },
-            { time: 26, text: "And bury me in all my favorite colors" },
-            { time: 31, text: "My sisters and my brothers, still" },
-            { time: 37, text: "I will not kiss you" },
-            { time: 42, text: "'Cause the hardest part of this is leaving you" },
-            { time: 53, text: "Now turn away" },
-            { time: 58, text: "'Cause I'm awful just to see" },
-            { time: 64, text: "'Cause all my hairs have abandoned all my body" },
-            { time: 72, text: "Oh, my agony" },
-            { time: 76, text: "Know that I will never marry" },
-            { time: 82, text: "Baby, I'm just soggy from the chemo" },
-            { time: 87, text: "Standing by the street" },
-            { time: 92, text: "And that I will never marry" },
-            { time: 97, text: "Baby, I'm just soggy from the chemo" },
-            { time: 102, text: "Standing by the street" },
-            { time: 108, text: "So turn away" },
-            { time: 113, text: "'Cause the hardest part of this is leaving you" },
-            { time: 125, text: "Yes, the hardest part of this" },
-            { time: 132, text: "Is leaving you" }
-        ],
+        lyrics: CURATED_BEAT_LYRICS['cancer'],
         lyricsType: 'synced',
         isDefault: true
     },
@@ -775,24 +995,9 @@ const DEFAULT_PLAYLIST = [
         artist: "The Weeknd",
         album: "After Hours",
         cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/8a/a5/d8/8aa5d8df-1a89-d9fc-e038-f1f310f81d13/20UMGIM08226.rgb.jpg/600x600bb.jpg",
-        duration: "03:20",
+        duration: "03:19",
         src: "assets/audio/blinding-lights.mp3",
-        lyrics: [
-            { time: 0, text: "Yeah" },
-            { time: 26, text: "I've been tryin' to call" },
-            { time: 29, text: "I've been on my own for long enough" },
-            { time: 33, text: "Maybe you can show me how to love, maybe" },
-            { time: 39, text: "I'm going through withdrawals" },
-            { time: 42, text: "You don't even have to do too much" },
-            { time: 46, text: "You can turn me on with just a touch, baby" },
-            { time: 52, text: "I look around and Sin City's cold and empty" },
-            { time: 57, text: "No one's around to judge me" },
-            { time: 60, text: "I can't see clearly when you're gone" },
-            { time: 65, text: "I said, ooh, I'm blinded by the lights" },
-            { time: 72, text: "No, I can't sleep until I feel your touch" },
-            { time: 78, text: "I said, ooh, I'm drowning in the night" },
-            { time: 85, text: "Oh, when I'm like this, you're the one I trust" }
-        ],
+        lyrics: CURATED_BEAT_LYRICS['blinding'],
         lyricsType: 'synced',
         isDefault: true
     },
@@ -803,21 +1008,7 @@ const DEFAULT_PLAYLIST = [
         cover: "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/09/20/9c/09209c1d-15ba-68ea-e49d-318e8d89a246/075679883506.jpg/600x600bb.jpg",
         duration: "03:28",
         src: "assets/audio/attention.mp3",
-        lyrics: [
-            { time: 0, text: "Woah-oh, hm" },
-            { time: 10, text: "You've been runnin' 'round, runnin' 'round throwin' that dirt on my name" },
-            { time: 15, text: "'Cause you knew that I, knew that I'd call you up" },
-            { time: 20, text: "You've been goin' 'round, goin' 'round every party in LA" },
-            { time: 25, text: "'Cause you knew that I, knew that I'd be at one, oh" },
-            { time: 30, text: "I know that dress is karma, perfume regret" },
-            { time: 35, text: "You got me thinkin' 'bout when you were mine, ooh" },
-            { time: 40, text: "And now I'm all up on ya, what you expect?" },
-            { time: 45, text: "But you're not comin' home with me tonight" },
-            { time: 49, text: "You just want attention, you don't want my heart" },
-            { time: 54, text: "Maybe you just hate the thought of me with someone new" },
-            { time: 59, text: "Yeah, you just want attention, I knew from the start" },
-            { time: 64, text: "You're just makin' sure I'm never gettin' over you, oh" }
-        ],
+        lyrics: CURATED_BEAT_LYRICS['attention'],
         lyricsType: 'synced',
         isDefault: true
     },
@@ -828,22 +1019,7 @@ const DEFAULT_PLAYLIST = [
         cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/44/28/aa/4428aac3-fcbf-9008-8686-2a6d713cbe9a/18UMGIM19659.rgb.jpg/600x600bb.jpg",
         duration: "03:48",
         src: "assets/audio/call-out-my-name.mp3",
-        lyrics: [
-            { time: 0, text: "We found each other" },
-            { time: 6, text: "I helped you out of a broken place" },
-            { time: 13, text: "You gave me comfort" },
-            { time: 19, text: "But falling for you was my mistake" },
-            { time: 25, text: "I put you on top, I put you on top" },
-            { time: 32, text: "I claimed you so proud and openly" },
-            { time: 38, text: "And when times were rough, when times were rough" },
-            { time: 44, text: "I made sure I held you close to me" },
-            { time: 50, text: "So call out my name" },
-            { time: 56, text: "Call out my name when I kiss you so gently" },
-            { time: 63, text: "I want you to stay" },
-            { time: 69, text: "I want you to stay, even though you don't want me" },
-            { time: 76, text: "Girl, why can't you wait?" },
-            { time: 82, text: "Girl, why can't you wait 'til I fall out of love?" }
-        ],
+        lyrics: CURATED_BEAT_LYRICS['call out'],
         lyricsType: 'synced',
         isDefault: true
     },
@@ -852,25 +1028,9 @@ const DEFAULT_PLAYLIST = [
         artist: "James Arthur",
         album: "Back from the Edge",
         cover: "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/18/88/ce/1888ce04-58bc-6e54-6e01-e2db8bfec0e7/886446132714.jpg/600x600bb.jpg",
-        duration: "03:31",
+        duration: "03:30",
         src: "assets/audio/say-you-wont-let-go.mp3",
-        lyrics: [
-            { time: 0, text: "I met you in the dark, you lit me up" },
-            { time: 5, text: "You made me feel as though I was enough" },
-            { time: 11, text: "We danced the night away, we drank too much" },
-            { time: 16, text: "I held your hair back when you were throwin' up" },
-            { time: 22, text: "Then you smiled over your shoulder" },
-            { time: 26, text: "For a minute, I was stone-cold sober" },
-            { time: 31, text: "I pulled you closer to my chest" },
-            { time: 36, text: "And you asked me to stay over" },
-            { time: 41, text: "I said, I already told ya" },
-            { time: 46, text: "I think that you should get some rest" },
-            { time: 51, text: "I knew I loved you then, but you'd never know" },
-            { time: 57, text: "'Cause I played it cool when I was scared of letting go" },
-            { time: 62, text: "I know I needed you, but I never showed" },
-            { time: 69, text: "But I wanna stay with you until we're grey and old" },
-            { time: 75, text: "Just say you won't let go" }
-        ],
+        lyrics: CURATED_BEAT_LYRICS['say you won'],
         lyricsType: 'synced',
         isDefault: true
     },
@@ -881,19 +1041,7 @@ const DEFAULT_PLAYLIST = [
         cover: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/d5/ae/30/d5ae300f-d5b7-7ff7-f050-0255dca0869a/24UMGIM88497.rgb.jpg/600x600bb.jpg",
         duration: "04:16",
         src: "assets/audio/timeless.mp3",
-        lyrics: [
-            { time: 0, text: "Ever since I was a jit, knew I was the shit" },
-            { time: 4, text: "Shorty pull up to the crib, told her, 'Bust it'" },
-            { time: 8, text: "Ooh, she want it, she want the life" },
-            { time: 12, text: "I got timeless motion, timeless vibe" },
-            { time: 20, text: "City on fire, girl, it's getting late" },
-            { time: 26, text: "Double-cup full, got me in a daze" },
-            { time: 32, text: "She say she love me, but I know she fake" },
-            { time: 38, text: "Timeless, timeless, everything we make" },
-            { time: 45, text: "XO, they don't know what we know" },
-            { time: 52, text: "Pull up with the squad, fly like a hero" },
-            { time: 58, text: "Timeless energy, never go to zero" }
-        ],
+        lyrics: CURATED_BEAT_LYRICS['timeless'],
         lyricsType: 'synced',
         isDefault: true
     }
@@ -3447,21 +3595,26 @@ function resetPlaylist() {
 
 async function resetDefaultSongs() {
     playMechanicalClick();
-    if (confirm("Muat kembali lagu bawaan (Helena, Cancer, Blinding Lights) ke dalam iPod?")) {
+    if (confirm("Muat kembali semua 7 lagu bawaan beserta lirik tersinkronisasi?")) {
         DEFAULT_PLAYLIST.forEach(def => {
-            const exists = playlist.some(t => t.title.toLowerCase() === def.title.toLowerCase());
-            if (!exists) {
+            const idx = playlist.findIndex(t => t.title.toLowerCase().trim() === def.title.toLowerCase().trim());
+            if (idx === -1) {
                 playlist.push({ ...def });
+            } else {
+                playlist[idx] = { ...def };
             }
         });
         if (currentTrackIndex === -1 && playlist.length > 0) {
             currentTrackIndex = 0;
             loadTrack(0);
+        } else if (currentTrackIndex >= 0) {
+            loadTrack(currentTrackIndex);
         }
         updatePlayerUI();
         renderCurrentMenu();
         renderCoverFlow();
-        alert("Lagu bawaan berhasil dimuat ke memori iPod!");
+        if (currentView === 'lyrics') renderLyrics();
+        alert("Semua 7 lagu dan lirik tersinkronisasi berhasil dimuat!");
     }
 }
 

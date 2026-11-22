@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iPod Classic U2 Special Edition - Music Player</title>
+
+    <!-- PWA & Mobile Meta Tags -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#18181b">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/0/375.png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&family=Caveat:wght@700&family=Rock+Salt&family=Reenie+Beanie&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- BACKGROUND DESK AMBIENCE -->
+    <div class="desk-canvas">
+        <div class="ambient-glow"></div>
+
+        <!-- TOP HARDWARE BAR: 3.5MM HEADPHONE JACK & MECHANICAL HOLD SWITCH -->
+        <div class="ipod-top-bar" id="ipod-top-bar">
+            <!-- 3.5mm Headphone Jack Assembly -->
+            <div class="headphone-assembly" id="headphone-assembly" onclick="toggleHeadphones()" title="Klik untuk Cabut / Colok Earphone">
+                <div class="jack-socket">
+                    <div class="jack-hole"></div>
+                </div>
+                <div class="earphone-plug connected" id="earphone-plug">
+                    <div class="plug-collar"></div>
+                    <div class="plug-strain"></div>
+                    <div class="earphone-wire"></div>
+                </div>
+                <span class="top-tag" id="headphone-label">JACK: ON</span>
+            </div>
+
+            <!-- Mechanical HOLD Switch -->
+            <div class="hold-assembly" id="hold-assembly" onclick="toggleHoldSwitch()" title="Kunci Tombol iPod (HOLD)">
+                <span class="top-tag">HOLD</span>
+                <div class="hold-switch-housing" id="hold-housing">
+                    <div class="hold-orange-strip" id="hold-orange-strip"></div>
+                    <div class="hold-slider-knob" id="hold-knob"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3D FLIPPABLE CHASSIS SCENE -->
+        <div class="ipod-3d-scene">
+            <div class="ipod-flipper" id="ipod-flipper">
+
+                <!-- FRONT FACE: IPOD CLASSIC U2 SPECIAL EDITION -->
+                <main class="ipod-chassis ipod-front theme-u2-edition" id="ipod">
+                    
+                    <!-- STAINLESS STEEL BEZEL & SPECULAR HIGHLIGHTS -->
+                    <div class="chrome-rim"></div>
+                    <div class="chrome-glare"></div>
+
+                    <!-- 1. RETRO LCD SCREEN (2.5 INCH COLOR DISPLAY) -->
+                    <section class="screen-frame">
+                        <div class="screen-glass"></div>
+                        <div class="lcd-screen" id="lcd-screen">
+                            
+                            <!-- TOP STATUS BAR -->
+                            <div class="status-bar">
+                                <div class="status-left">
+                                    <span id="status-hold-icon" class="status-icon" style="display: none; color: #f97316; margin-right: 4px;" title="HOLD Terkunci"><i class="fa-solid fa-lock"></i></span>
+                                    <span id="status-title">iPod</span>
+                                </div>
+                                <div class="status-center">
+                                    <span id="status-play-icon" class="status-icon"><i class="fa-solid fa-play"></i></span>
+                                    <span id="status-shuffle-icon" class="status-icon" style="display: none; margin-left: 4px;"><i class="fa-solid fa-shuffle"></i></span>
+                                    <span id="status-repeat-icon" class="status-icon" style="display: none; margin-left: 4px;"><i class="fa-solid fa-repeat"></i></span>
+                                    <span id="status-sleep-icon" class="status-icon" style="display: none; margin-left: 4px;" title="Sleep Timer Aktif"><i class="fa-solid fa-moon"></i></span>
+                                </div>
+                                <div class="status-right">
+                                    <div class="battery-gauge">
+                                        <div class="battery-level" id="battery-level"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                    <!-- VIEW 1: MENU NAVIGATION VIEW -->
+                    <div class="screen-view active" id="view-menu">
+                        <div class="menu-split">
+                            <div class="menu-pane-left">
+                                <div class="menu-header" id="menu-header-title">iPod</div>
+                                <ul class="menu-list" id="menu-items-list">
+                                    <!-- Items dynamically populated by app.js -->
+                                </ul>
+                            </div>
+                            <div class="menu-pane-right" id="menu-preview-pane">
+                                <div class="menu-art-preview" id="menu-art-preview">
+                                    <div class="art-placeholder">
+                                        <i class="fa-solid fa-music"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- VIEW 2: NOW PLAYING PLAYER VIEW -->
+                    <div class="screen-view" id="view-player">
+                        <div class="player-container">
+                            <!-- Album Art with Reflection -->
+                            <div class="player-art-wrapper">
+                                <div class="player-art" id="player-art" title="Klik untuk lihat Lirik">
+                                    <img id="album-cover-img" src="" alt="Album Cover" onerror="this.style.display='none'; document.getElementById('album-fallback-art').style.display='flex';">
+                                    <div id="album-fallback-art" class="fallback-cover">
+                                        <i class="fa-solid fa-compact-disc spin-vinyl"></i>
+                                    </div>
+                                    <button class="now-playing-lyrics-pill" onclick="switchView('lyrics')" title="Lihat Lirik Lagu"><i class="fa-solid fa-microphone-lines"></i> LIRIK</button>
+                                </div>
+                                <div class="player-equalizer" id="equalizer-bars">
+                                    <span></span><span></span><span></span><span></span>
+                                </div>
+                            </div>
+
+                            <!-- Track Info & Scrubbar -->
+                            <div class="player-details">
+                                <div class="track-title" id="player-track-title">Pilih Lagu</div>
+                                <div class="track-artist" id="player-track-artist">Artis</div>
+                                <div class="track-album" id="player-track-album">Black Chrome Edition</div>
+
+                                <!-- Progress Scrubber Bar -->
+                                <div class="scrub-container">
+                                    <div class="scrub-bar-bg" id="scrub-bar-clickable">
+                                        <div class="scrub-bar-fill" id="player-progress-fill"></div>
+                                        <div class="scrub-bar-handle" id="player-progress-handle"></div>
+                                    </div>
+                                    <div class="scrub-timestamps">
+                                        <span id="time-current">0:00</span>
+                                        <span id="time-remaining">-0:00</span>
+                                    </div>
+                                </div>
+
+                                <!-- Volume / Interactive Slider -->
+                                <div class="player-volume-bar" id="volume-indicator-box" title="Klik untuk atur volume">
+                                    <i class="fa-solid fa-volume-low"></i>
+                                    <div class="vol-bar-bg" id="vol-bar-clickable">
+                                        <div class="vol-bar-fill" id="player-vol-fill"></div>
+                                    </div>
+                                    <span class="vol-label" id="vol-numeric-label">80%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- VIEW 3: 3D COVER FLOW VIEW -->
+                    <div class="screen-view" id="view-coverflow">
+                        <div class="coverflow-stage" id="coverflow-stage">
+                            <div class="coverflow-carousel" id="coverflow-carousel">
+                                <!-- Generated by JS -->
+                            </div>
+                            <div class="coverflow-reflection-floor"></div>
+                            <div class="coverflow-meta">
+                                <div class="cf-title" id="cf-title">Title</div>
+                                <div class="cf-sub" id="cf-sub">Artist • Album</div>
+                                <div class="cf-count" id="cf-count">1 of 4</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- VIEW 4: INTERACTIVE LYRICS VIEW -->
+                    <div class="screen-view" id="view-lyrics">
+                        <div class="lyrics-view-container">
+                            <div class="lyrics-header">
+                                <span class="lyrics-track-name" id="lyrics-track-name">Track Title</span>
+                                <div class="lyrics-header-right">
+                                    <span class="lyrics-status-badge" id="lyrics-status-badge">SYNCED</span>
+                                    <button class="lyrics-btn-edit" id="btn-edit-lyrics" onclick="promptPasteLyrics()" title="Tempel atau ubah lirik lagu ini"><i class="fa-solid fa-pen-to-square"></i></button>
+                                </div>
+                            </div>
+                            <div class="lyrics-scroller" id="lyrics-scroller">
+                                <div class="lyrics-lines" id="lyrics-lines">
+                                    <!-- Lyrics populated by JS -->
+                                </div>
+                            </div>
+                            <div class="lyrics-footer-bar">
+                                <span class="lyrics-hint"><i class="fa-solid fa-arrows-up-down"></i> Klik baris lirik untuk melompat</span>
+                                <div class="lyrics-offset-group" title="Kompensasi sinkronisasi ketukan lirik">
+                                    <button class="lyrics-offset-btn" onclick="adjustLyricsOffset(-0.5)" title="Percepat lirik 0.5s"><i class="fa-solid fa-backward-step"></i> -0.5s</button>
+                                    <span id="lyrics-offset-val" class="lyrics-offset-pill">0.0s</span>
+                                    <button class="lyrics-offset-btn" onclick="adjustLyricsOffset(0.5)" title="Perlambat lirik 0.5s">+0.5s <i class="fa-solid fa-forward-step"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- VIEW 5: VIDEOS PLAYER VIEW -->
+                    <div class="screen-view" id="view-videos">
+                        <div class="videos-container">
+                            <div class="video-screen-wrapper">
+                                <canvas id="video-canvas" width="290" height="150"></canvas>
+                                <div class="video-overlay-hud">
+                                    <i class="fa-solid fa-film"></i> iPod Silhouettes Demo
+                                </div>
+                            </div>
+                            <div class="video-controls-info">
+                                <span id="video-status-text">Memutar Klip Video Retro...</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- VIEW 6: PHOTOS GALLERY VIEW -->
+                    <div class="screen-view" id="view-photos">
+                        <div class="photos-container">
+                            <div class="photo-frame">
+                                <img id="photo-viewer-img" src="" alt="iPod Wallpaper">
+                                <div class="photo-info-bar">
+                                    <span id="photo-title">Wallpaper 1</span>
+                                    <span id="photo-counter">1 / 5</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- VIEW 7: RETRO CLOCK & STOPWATCH -->
+                    <div class="screen-view" id="view-clock">
+                        <div class="clock-container">
+                            <div class="digital-clock-face">
+                                <div class="clock-time-large" id="clock-time-large">12:00:00</div>
+                                <div class="clock-date-str" id="clock-date-str">Sabtu, 21 November 2026</div>
+                            </div>
+                            <div class="stopwatch-section">
+                                <div class="stopwatch-label">STOPWATCH</div>
+                                <div class="stopwatch-time" id="stopwatch-time">00:00.0</div>
+                                <div class="stopwatch-actions">
+                                    <span class="sw-pill"><i class="fa-solid fa-circle"></i> Tengah: Start/Stop</span>
+                                    <span class="sw-pill"><i class="fa-solid fa-rotate-left"></i> Menu: Reset</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- VIEW 8: RETRO BRICK BREAKOUT GAME -->
+                    <div class="screen-view" id="view-game">
+                        <div class="game-container">
+                            <div class="game-top-bar">
+                                <span>SKOR: <strong id="game-score">0</strong></span>
+                                <span>NYAWA: <strong id="game-lives">❤️❤️❤️</strong></span>
+                            </div>
+                            <canvas id="game-canvas" width="298" height="175"></canvas>
+                            <div class="game-instructions" id="game-overlay-msg">
+                                Putar Wheel = Gerakkan Raket • Klik Tengah = Mulai
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- VIEW 9: REAL-TIME MUSIC VISUALIZER VIEW -->
+                    <div class="screen-view" id="view-visualizer">
+                        <div class="visualizer-container">
+                            <div class="visualizer-header">
+                                <span id="vis-track-title">Live Visualizer</span>
+                                <span class="vis-mode-tag" id="vis-mode-tag">SPECTRUM 32-BAND</span>
+                            </div>
+                            <canvas id="visualizer-canvas" width="298" height="155"></canvas>
+                            <div class="visualizer-footer">
+                                <span class="vis-pill"><i class="fa-solid fa-waveform-lines"></i> Web Audio FFT</span>
+                                <span class="vis-pill">Klik Tengah: Ganti Mode</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- VIEW 10: RETRO MUSIC QUIZ GAME VIEW -->
+                    <div class="screen-view" id="view-quiz">
+                        <div class="quiz-container">
+                            <div class="quiz-top-bar">
+                                <span>MUSIC QUIZ</span>
+                                <span id="quiz-round-tag">SOAL 1/5</span>
+                                <span id="quiz-score-badge">SKOR: 0</span>
+                            </div>
+                            <div class="quiz-status-box">
+                                <div class="quiz-speaker-anim" id="quiz-speaker-icon">
+                                    <i class="fa-solid fa-compact-disc spin-vinyl"></i>
+                                </div>
+                                <div class="quiz-prompt-text" id="quiz-prompt">Dengarkan lagunya, tebak judulnya!</div>
+                                <div class="quiz-timer-track">
+                                    <div class="quiz-timer-fill" id="quiz-timer-fill"></div>
+                                </div>
+                            </div>
+                            <ul class="quiz-choices-list" id="quiz-choices-list">
+                                <!-- Generated by JS -->
+                            </ul>
+                            <div class="quiz-hint-footer">
+                                <span>Putar Wheel: Pilih • Tengah: Jawab</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- VIEW 11: ABOUT / SPECS VIEW -->
+                    <div class="screen-view" id="view-about">
+                        <div class="about-container">
+                            <div class="about-logo">
+                                <i class="fa-brands fa-apple"></i>
+                                <span>iPod Classic</span>
+                            </div>
+                            <div class="about-specs">
+                                <p><strong>Kapasitas:</strong> 80 GB</p>
+                                <p><strong>Versi OS:</strong> 2.0 (U2 Signature Edition)</p>
+                                <p><strong>Format:</strong> MP3 / AAC / WebAudio EQ</p>
+                                <p><strong>Edisi Aktif:</strong> <span id="about-edition-name">U2 Special Edition</span></p>
+                                <p><strong>Fitur:</strong> 3D Cover Flow, Music Quiz, PWA</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RETRO IPOD VOLUME HUD OVERLAY POPUP -->
+                    <div class="volume-hud-popup" id="volume-hud-popup">
+                        <div class="hud-header">
+                            <i class="fa-solid fa-volume-high"></i>
+                            <span>Volume</span>
+                            <span id="hud-vol-percent">80%</span>
+                        </div>
+                        <div class="hud-bar-wrapper">
+                            <i class="fa-solid fa-volume-low"></i>
+                            <div class="hud-bar-track" id="hud-bar-track" title="Klik langsung untuk ubah volume">
+                                <div class="hud-bar-fill" id="hud-bar-fill"></div>
+                            </div>
+                            <i class="fa-solid fa-volume-high"></i>
+                        </div>
+                    </div>
+
+                    <!-- RETRO IDLE SCREENSAVER OVERLAY -->
+                    <div class="screensaver-overlay" id="screensaver-overlay">
+                        <div class="screensaver-content">
+                            <i class="fa-brands fa-apple ss-apple-logo"></i>
+                            <div class="ss-clock" id="ss-clock">00:00</div>
+                            <div class="ss-date" id="ss-date">iPod Sedang Tidur</div>
+                            <div class="ss-hint">Sentuh Wheel untuk membangunkan</div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- THE CREATION OF ADAM PHOSPHOR HANDS BANNER -->
+            <div class="creation-hands-banner" id="creation-hands-banner" title="The Creation of Adam - Green CRT Matrix Edition"></div>
+
+            <!-- MIDNIGHT PURPLE DRIFT BANNER -->
+            <div class="purple-drift-banner" id="purple-drift-banner" title="Midnight Purple Drift & Neon Horizon"></div>
+
+            <!-- 2. ICONIC RETRO CLICK WHEEL -->
+            <section class="wheel-area">
+                <div class="click-wheel" id="click-wheel">
+                    
+                    <!-- 4 PERIMETER BUTTONS -->
+                    <button class="wheel-btn btn-menu" id="btn-menu" title="Menu / Kembali">
+                        MENU
+                    </button>
+                    <button class="wheel-btn btn-prev" id="btn-prev" title="Sebelumnya / Rewind">
+                        <i class="fa-solid fa-backward-step"></i>
+                    </button>
+                    <button class="wheel-btn btn-next" id="btn-next" title="Berikutnya / Fast-Forward">
+                        <i class="fa-solid fa-forward-step"></i>
+                    </button>
+                    <button class="wheel-btn btn-play" id="btn-play" title="Play / Pause">
+                        <i class="fa-solid fa-play"></i><i class="fa-solid fa-pause"></i>
+                    </button>
+
+                    <!-- CENTER SELECT BUTTON -->
+                    <button class="center-button" id="btn-center" title="Pilih / Select">
+                        <div class="center-button-inner"></div>
+                    </button>
+
+                </div>
+            </section>
+
+            <!-- CHROME BRANDING ENGRAVING (BOTTOM) -->
+            <div class="bottom-branding" id="bottom-branding-text">
+                <span>★ U2 SPECIAL EDITION ★</span>
+            </div>
+
+        </main>
+
+        <!-- BACK FACE: MIRROR CHROME STAINLESS STEEL CASING WITH LASER ENGRAVED U2 SIGNATURES -->
+        <div class="ipod-chassis ipod-back theme-u2-back" id="ipod-back" onclick="toggleIpodFlip()" title="Klik untuk balik ke tampilan depan">
+            <div class="chrome-mirror-sheen"></div>
+            <div class="chrome-glare"></div>
+
+            <div class="back-engravings-container">
+                <div class="back-apple-logo">
+                    <i class="fa-brands fa-apple"></i>
+                </div>
+                <div class="back-ipod-logo">iPod</div>
+                <div class="back-storage-badge">80GB</div>
+
+                <!-- LASER ENGRAVED U2 BAND MEMBER SIGNATURES -->
+                <div class="u2-signatures-section" id="u2-back-section">
+                    <div class="u2-edition-title">★ SPECIAL EDITION U2 ★</div>
+                    <div class="signatures-grid">
+                        <div class="signature-card">
+                            <span class="sig-name sig-bono">Bono</span>
+                            <span class="sig-role">Lead Vocals</span>
+                        </div>
+                        <div class="signature-card">
+                            <span class="sig-name sig-the-edge">The Edge</span>
+                            <span class="sig-role">Lead Guitar</span>
+                        </div>
+                        <div class="signature-card">
+                            <span class="sig-name sig-adam">Adam Clayton</span>
+                            <span class="sig-role">Bass</span>
+                        </div>
+                        <div class="signature-card">
+                            <span class="sig-name sig-larry">Larry Mullen Jr.</span>
+                            <span class="sig-role">Drums</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LASER ENGRAVED DEFTONES & ADAM CREATION EDITION SECTION -->
+                <div class="deftones-back-section" id="deftones-back-section" style="display: none;">
+                    <div class="deftones-edition-title">★ SPECIAL EDITION DEFTONES ★</div>
+                    <div class="deftones-sub-badge">DIAMOND EYES • PHOSPHOR GREEN</div>
+                    
+                    <!-- Deftones & Hands Visual Engraving Discs -->
+                    <div class="deftones-visual-row">
+                        <div class="deftones-disc-frame" title="Deftones Diamond Eyes Owl">
+                            <img src="assets/theme-green-deftones.jpg" alt="Deftones Owl" class="engraved-back-art">
+                        </div>
+                        <div class="deftones-disc-frame" title="The Creation of Adam Hands">
+                            <img src="assets/theme-green-creation.jpg" alt="Creation Hands" class="engraved-back-art">
+                        </div>
+                    </div>
+
+                    <div class="signatures-grid deftones-grid">
+                        <div class="signature-card">
+                            <span class="sig-name sig-bono">Chino Moreno</span>
+                            <span class="sig-role">Lead Vocals</span>
+                        </div>
+                        <div class="signature-card">
+                            <span class="sig-name sig-the-edge">Stephen Carpenter</span>
+                            <span class="sig-role">Lead Guitar</span>
+                        </div>
+                        <div class="signature-card">
+                            <span class="sig-name sig-adam">Sergio Vega</span>
+                            <span class="sig-role">Bass</span>
+                        </div>
+                        <div class="signature-card">
+                            <span class="sig-name sig-larry">Abe Cunningham</span>
+                            <span class="sig-role">Drums</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LASER ENGRAVED MIDNIGHT PURPLE & COSMIC HORIZON EDITION SECTION -->
+                <div class="purple-back-section" id="purple-back-section" style="display: none;">
+                    <div class="purple-edition-title">★ SPECIAL EDITION MIDNIGHT PURPLE ★</div>
+                    <div class="purple-sub-badge">COSMIC HORIZON • S14 DRIFT SYNDICATE</div>
+                    
+                    <!-- 3 Visual Engraving Discs (Black Hole, Aurora, Drift Car) -->
+                    <div class="purple-visual-row">
+                        <div class="purple-disc-frame" title="Cosmic Event Horizon Black Hole">
+                            <img src="assets/theme-purple-blackhole.jpg" alt="Event Horizon" class="engraved-back-art">
+                        </div>
+                        <div class="purple-disc-frame" title="Violet Aurora Borealis">
+                            <img src="assets/theme-purple-aurora.jpg" alt="Aurora Borealis" class="engraved-back-art">
+                        </div>
+                        <div class="purple-disc-frame" title="Midnight Kouki S14 Drift">
+                            <img src="assets/theme-purple-drift.jpg" alt="Midnight S14" class="engraved-back-art">
+                        </div>
+                    </div>
+
+                    <div class="signatures-grid purple-grid">
+                        <div class="signature-card">
+                            <span class="sig-name">TOKYO MIDNIGHT</span>
+                            <span class="sig-role">Kouki S14 Drift</span>
+                        </div>
+                        <div class="signature-card">
+                            <span class="sig-name">EVENT HORIZON</span>
+                            <span class="sig-role">Cosmic Audio Core</span>
+                        </div>
+                        <div class="signature-card">
+                            <span class="sig-name">AURORA VIOLET</span>
+                            <span class="sig-role">Deep Space Sky</span>
+                        </div>
+                        <div class="signature-card">
+                            <span class="sig-name">SPECIAL EDITION</span>
+                            <span class="sig-role">80GB HDD</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="back-serial-legal">
+                    Designed by Apple in California • Assembled in China<br>
+                    Model No.: A1238 • 80GB Hard Drive • Serial No.: 4H639XZ2V9R<br>
+                    TM and © 2006 Apple Computer, Inc. All rights reserved.
+                </div>
+
+                <div class="back-hint-pill">
+                    <i class="fa-solid fa-arrows-rotate"></i> Klik untuk balik ke Depan
+                </div>
+            </div>
+        </div>
+
+        </div> <!-- /.ipod-flipper -->
+        </div> <!-- /.ipod-3d-scene -->
+
+        <!-- EXTERNAL CONTROLS & INSTRUCTIONS BAR -->
+        <aside class="quick-toolbar">
+            <div class="tool-group">
+                <button class="tool-pill" onclick="changeVolume(-0.1)" title="Kecilkan Volume">
+                    <i class="fa-solid fa-volume-low"></i> Vol -
+                </button>
+                <span class="vol-badge" id="toolbar-vol-text">80%</span>
+                <button class="tool-pill" onclick="changeVolume(0.1)" title="Besarkan Volume">
+                    <i class="fa-solid fa-volume-high"></i> Vol +
+                </button>
+            </div>
+            <button class="tool-pill" onclick="toggleIpodFlip()" title="Putar Balik Bodi iPod (Depan / Belakang)">
+                <i class="fa-solid fa-arrows-rotate"></i> Putar Bodi
+            </button>
+            <button class="tool-pill" id="btn-hold-toggle" onclick="toggleHoldSwitch()" title="Kunci Tombol iPod (HOLD)">
+                <i class="fa-solid fa-lock-open"></i> HOLD: OFF
+            </button>
+            <button class="tool-pill" onclick="cycleTheme()" title="Ganti Tema Casing iPod">
+                <i class="fa-solid fa-palette"></i> <span id="btn-theme-name">U2 Special Edition</span>
+            </button>
+            <button class="tool-pill" onclick="switchView('visualizer')" title="Buka Music Visualizer">
+                <i class="fa-solid fa-chart-simple"></i> Visualizer
+            </button>
+            <button class="tool-pill" onclick="switchView('coverflow')" title="Buka 3D Cover Flow">
+                <i class="fa-solid fa-layer-group"></i> Cover Flow
+            </button>
+            <button class="tool-pill" onclick="switchView('lyrics')" title="Lihat Lirik Lagu">
+                <i class="fa-solid fa-microphone-lines"></i> Lirik
+            </button>
+            <button class="tool-pill" onclick="bukaInputLagu()" title="Tambah MP3 / Lirik dari Komputer">
+                <i class="fa-solid fa-plus"></i> Tambah Lagu
+            </button>
+            <button class="tool-pill" id="toggle-sound-btn" onclick="toggleClickSound()" title="Aktif/Nonaktifkan Suara Tik-Tik">
+                <i class="fa-solid fa-volume-high"></i> Tik: ON
+            </button>
+            <button class="tool-pill tool-pill-danger" onclick="deleteCurrentSong()" title="Hapus Lagu yang Sedang Diputar">
+                <i class="fa-solid fa-trash"></i> Hapus Lagu Ini
+            </button>
+            <button class="tool-pill" onclick="clearAllSongs()" title="Hapus Semua File MP3 dari iPod">
+                <i class="fa-solid fa-trash-can"></i> Hapus Semua MP3
+            </button>
+            <button class="tool-pill" id="btn-install-pwa" style="display: none;" onclick="triggerPWAInstall()" title="Install iPod sebagai Aplikasi Desktop">
+                <i class="fa-solid fa-download"></i> Install App
+            </button>
+        </aside>
+
+        <!-- HIDDEN FILE PICKER UNTUK UPLOAD MP3 & LRC -->
+        <input type="file" id="mp3-file-input" accept="audio/*,.lrc" multiple style="display: none;">
+
+        <!-- HTML5 AUDIO ELEMENT -->
+        <audio id="audio-engine" preload="auto"></audio>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script src="app.js"></script>
+</body>
+</html>

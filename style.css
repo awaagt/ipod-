@@ -1,0 +1,2839 @@
+/* ==========================================================================
+   BLACK CHROME IPOD CLASSIC - SKEUOMORPHIC STYLESHEET
+   Design: Mirror Chrome Bezel, Piano Black Faceplate, & iPod OS LCD Interface
+   ========================================================================== */
+
+/* 1. RESET & DESK ENVIRONMENT */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+body {
+    background-color: #080a0f;
+    background-image: 
+        radial-gradient(circle at 50% 30%, rgba(30, 41, 59, 0.4) 0%, transparent 70%),
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 100% 100%, 28px 28px, 28px 28px;
+    color: #f8fafc;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    padding: 30px 15px;
+}
+
+.desk-canvas {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    max-width: 500px;
+}
+
+/* TOP HARDWARE BAR (HEADPHONE JACK & MECHANICAL HOLD SWITCH) */
+.ipod-top-bar {
+    width: 370px;
+    height: 38px;
+    background: linear-gradient(to bottom, #334155 0%, #1e293b 60%, #0f172a 100%);
+    border-radius: 14px 14px 6px 6px;
+    border: 2px solid #475569;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6), inset 0 1px 2px rgba(255, 255, 255, 0.4);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 18px;
+    margin-bottom: -16px;
+    z-index: 25;
+    position: relative;
+}
+
+.top-tag {
+    font-size: 8px;
+    font-weight: 800;
+    font-family: 'Space Mono', monospace;
+    color: #94a3b8;
+    letter-spacing: 0.05em;
+}
+
+/* Headphone Assembly */
+.headphone-assembly {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    position: relative;
+}
+
+.jack-socket {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #020617 35%, #475569 70%, #94a3b8 100%);
+    border: 1.5px solid #cbd5e1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.9);
+}
+
+.jack-hole {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #000000;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 1);
+}
+
+.earphone-plug {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    left: 2px;
+    top: -26px;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.2s ease;
+    pointer-events: none;
+}
+
+.earphone-plug.connected {
+    transform: translateY(18px);
+}
+
+.earphone-plug:not(.connected) {
+    transform: translateY(-8px);
+    opacity: 0.35;
+}
+
+.plug-collar {
+    width: 12px;
+    height: 14px;
+    background: #ffffff;
+    border-radius: 3px 3px 1px 1px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.8);
+    border: 1px solid #cbd5e1;
+}
+
+.plug-strain {
+    width: 6px;
+    height: 8px;
+    background: #e2e8f0;
+    margin-top: -2px;
+    border-radius: 2px;
+}
+
+.earphone-wire {
+    width: 3px;
+    height: 45px;
+    background: #f8fafc;
+    border-radius: 2px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* Mechanical HOLD Switch */
+.hold-assembly {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.hold-switch-housing {
+    width: 38px;
+    height: 17px;
+    background: #090d16;
+    border-radius: 9px;
+    border: 1.5px solid #334155;
+    position: relative;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+}
+
+.hold-orange-strip {
+    position: absolute;
+    left: 4px;
+    width: 14px;
+    height: 9px;
+    background: #f97316;
+    border-radius: 3px;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+}
+
+.hold-slider-knob {
+    position: absolute;
+    left: 2px;
+    width: 16px;
+    height: 13px;
+    background: linear-gradient(to bottom, #f8fafc 0%, #cbd5e1 50%, #94a3b8 100%);
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.9);
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.hold-assembly.locked .hold-orange-strip {
+    opacity: 1;
+}
+
+.hold-assembly.locked .hold-slider-knob {
+    transform: translateX(18px);
+}
+
+/* 3D SCENE & FLIP MECHANISM */
+.ipod-3d-scene {
+    perspective: 1400px;
+    -webkit-perspective: 1400px;
+    width: 370px;
+    height: 610px;
+    position: relative;
+}
+
+.ipod-flipper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    transition: transform 0.75s cubic-bezier(0.4, 0, 0.2, 1);
+    -webkit-transition: -webkit-transform 0.75s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+}
+
+.ipod-flipper.flipped {
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+}
+
+.ipod-front,
+.ipod-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    will-change: transform;
+}
+
+.ipod-front {
+    z-index: 2;
+    transform: rotateY(0deg) translateZ(1px);
+    -webkit-transform: rotateY(0deg) translateZ(1px);
+}
+
+.ipod-back {
+    transform: rotateY(180deg) translateZ(1px);
+    -webkit-transform: rotateY(180deg) translateZ(1px);
+    z-index: 1;
+}
+
+/* 2. IPOD HARDWARE CHASSIS (BLACK CHROME EDITION) */
+.ipod-chassis {
+    position: relative;
+    width: 370px;
+    height: 610px;
+    background: linear-gradient(155deg, #1c202a 0%, #10131a 40%, #07090d 100%);
+    border-radius: 38px;
+    padding: 28px 24px 22px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    
+    /* Precision Mirror Chrome Rim Bezel */
+    border: 3px solid #64748b;
+    box-shadow: 
+        0 0 0 2px #cbd5e1,
+        0 0 0 5px #1e293b,
+        0 0 0 6px #475569,
+        0 30px 70px rgba(0, 0, 0, 0.95),
+        0 10px 25px rgba(0, 0, 0, 0.7),
+        inset 0 3px 6px rgba(255, 255, 255, 0.4),
+        inset 0 -3px 8px rgba(0, 0, 0, 0.8);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ipod-chassis.drag-over {
+    border-color: #ef4444 !important;
+    box-shadow: 0 0 35px rgba(239, 68, 68, 0.9), 0 0 0 4px #dc2626 !important;
+    transform: scale(1.02);
+}
+
+/* Glossy Surface Glare Reflex */
+.chrome-glare {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    border-radius: 38px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.02) 28%, transparent 50%);
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* 3. RETRO LCD SCREEN (2.5 INCH COLOR DISPLAY) */
+.screen-frame {
+    position: relative;
+    width: 312px;
+    height: 236px;
+    background: #000000;
+    border-radius: 10px;
+    padding: 6px;
+    box-shadow: 
+        inset 0 2px 6px rgba(0, 0, 0, 0.9),
+        inset 0 -1px 2px rgba(255, 255, 255, 0.15),
+        0 1px 2px rgba(255, 255, 255, 0.12);
+    z-index: 2;
+}
+
+.lcd-screen {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: #f1f5f9;
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.25);
+    font-size: 13px;
+    color: #0f172a;
+}
+
+/* Glass Screen Glare Reflection */
+.screen-glass {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    right: 6px;
+    height: 110px;
+    background: linear-gradient(175deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.02) 75%, transparent 100%);
+    border-radius: 6px 6px 40px 40px;
+    pointer-events: none;
+    z-index: 8;
+}
+
+/* TOP STATUS BAR */
+.status-bar {
+    height: 22px;
+    background: linear-gradient(to bottom, #38bdf8 0%, #0284c7 45%, #0369a1 100%);
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    border-bottom: 1px solid #075985;
+    flex-shrink: 0;
+    z-index: 5;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+}
+
+.status-left {
+    display: flex;
+    align-items: center;
+}
+
+.status-center {
+    font-size: 9px;
+    display: flex;
+    align-items: center;
+}
+
+.status-icon {
+    display: inline-block;
+    opacity: 0.95;
+}
+
+.battery-gauge {
+    width: 22px;
+    height: 10px;
+    border: 1.5px solid #ffffff;
+    border-radius: 2px;
+    padding: 1px;
+    position: relative;
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.battery-gauge::after {
+    content: '';
+    position: absolute;
+    right: -3px;
+    top: 2px;
+    width: 2px;
+    height: 4px;
+    background-color: #ffffff;
+    border-radius: 0 1px 1px 0;
+}
+
+.battery-level {
+    height: 100%;
+    width: 85%;
+    background: linear-gradient(to bottom, #4ade80, #16a34a);
+    border-radius: 1px;
+}
+
+/* SCREEN VIEW CONTAINER */
+.screen-view {
+    display: none;
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+}
+
+.screen-view.active {
+    display: flex;
+}
+
+/* VIEW 1: MENU NAVIGATION VIEW (Classic Split Screen) */
+.menu-split {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.menu-pane-left {
+    width: 58%;
+    height: 100%;
+    background-color: #ffffff;
+    border-right: 1px solid #cbd5e1;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-header {
+    background: linear-gradient(to bottom, #e2e8f0 0%, #cbd5e1 100%);
+    padding: 4px 10px;
+    font-size: 11px;
+    font-weight: 800;
+    color: #1e293b;
+    border-bottom: 1px solid #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.menu-list {
+    list-style: none;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.menu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 10px;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: #0f172a;
+    border-bottom: 1px solid #f1f5f9;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.menu-item .chevron {
+    font-size: 11px;
+    font-weight: 800;
+    color: #64748b;
+    margin-left: 6px;
+}
+
+/* Glossy Blue Selected Menu Bar */
+.menu-item.selected {
+    background: linear-gradient(to bottom, #38bdf8 0%, #0284c7 50%, #0369a1 100%);
+    color: #ffffff;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+}
+
+.menu-item.selected .chevron {
+    color: #ffffff;
+}
+
+.menu-pane-right {
+    width: 42%;
+    height: 100%;
+    background: #f8fafc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.menu-art-preview {
+    width: 90px;
+    height: 90px;
+    border-radius: 4px;
+    background: #e2e8f0;
+    border: 1px solid #cbd5e1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.menu-art-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.art-placeholder {
+    font-size: 30px;
+    color: #94a3b8;
+}
+
+/* VIEW 2: NOW PLAYING VIEW */
+.player-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding: 10px 12px;
+    gap: 12px;
+    align-items: center;
+    background: #ffffff;
+}
+
+.player-art-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.player-art {
+    width: 94px;
+    height: 94px;
+    border-radius: 4px;
+    background: #0f172a;
+    border: 1px solid #cbd5e1;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.18);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.player-art img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.fallback-cover {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #1e293b, #0f172a);
+    color: #38bdf8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+}
+
+.spin-vinyl.playing {
+    animation: spinDisc 4s linear infinite;
+}
+
+@keyframes spinDisc {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Mini Audio Equalizer Bars */
+.player-equalizer {
+    display: flex;
+    align-items: flex-end;
+    gap: 2px;
+    height: 12px;
+}
+
+.player-equalizer span {
+    width: 3px;
+    background-color: #0284c7;
+    border-radius: 1px;
+    height: 2px;
+    transition: height 0.1s ease;
+}
+
+.player-equalizer.playing span:nth-child(1) { animation: eqBar 0.6s infinite alternate ease-in-out; }
+.player-equalizer.playing span:nth-child(2) { animation: eqBar 0.8s infinite 0.2s alternate ease-in-out; }
+.player-equalizer.playing span:nth-child(3) { animation: eqBar 0.5s infinite 0.1s alternate ease-in-out; }
+.player-equalizer.playing span:nth-child(4) { animation: eqBar 0.7s infinite 0.3s alternate ease-in-out; }
+
+@keyframes eqBar {
+    0% { height: 3px; }
+    100% { height: 12px; }
+}
+
+.player-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.track-title {
+    font-size: 13.5px;
+    font-weight: 800;
+    color: #0f172a;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 2px;
+}
+
+.track-artist {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: #334155;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 2px;
+}
+
+.track-album {
+    font-size: 10px;
+    font-weight: 500;
+    color: #64748b;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 8px;
+}
+
+/* Scrubber / Progress Bar */
+.scrub-container {
+    width: 100%;
+    margin-bottom: 6px;
+}
+
+.scrub-bar-bg {
+    width: 100%;
+    height: 7px;
+    background: #cbd5e1;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.scrub-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(to bottom, #38bdf8, #0284c7);
+    border-radius: 4px;
+    transition: width 0.1s linear;
+}
+
+.scrub-timestamps {
+    display: flex;
+    justify-content: space-between;
+    font-size: 9.5px;
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    color: #475569;
+    margin-top: 3px;
+}
+
+/* Volume Bar Indicator & Interactive Slider */
+.player-volume-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    color: #475569;
+    cursor: pointer;
+    padding: 3px 0;
+    transition: color 0.15s ease;
+}
+
+.player-volume-bar:hover {
+    color: #0284c7;
+}
+
+.vol-bar-bg {
+    flex: 1;
+    height: 8px;
+    background: #cbd5e1;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+}
+
+.vol-bar-fill {
+    height: 100%;
+    width: 80%;
+    background: linear-gradient(to bottom, #38bdf8, #0284c7);
+    border-radius: 4px;
+    transition: width 0.08s ease;
+}
+
+.vol-label {
+    font-size: 10px;
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    color: #0284c7;
+    min-width: 26px;
+    text-align: right;
+}
+
+/* RETRO IPOD CLASSIC VOLUME HUD OVERLAY */
+.volume-hud-popup {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    width: 220px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    border: 1.5px solid #0284c7;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+    padding: 8px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 50;
+}
+
+.volume-hud-popup.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+}
+
+.hud-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.01em;
+}
+
+.hud-header i {
+    color: #0284c7;
+}
+
+#hud-vol-percent {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: #0284c7;
+}
+
+.hud-bar-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    color: #64748b;
+}
+
+.hud-bar-track {
+    flex: 1;
+    height: 10px;
+    background: #cbd5e1;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.hud-bar-fill {
+    height: 100%;
+    width: 80%;
+    background: linear-gradient(to bottom, #38bdf8 0%, #0284c7 60%, #0369a1 100%);
+    border-radius: 5px;
+    transition: width 0.08s ease;
+}
+
+/* VIEW 3: ABOUT VIEW */
+.about-container {
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.about-logo {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 15px;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 8px;
+}
+
+.about-specs {
+    font-size: 11px;
+    line-height: 1.6;
+    color: #475569;
+    text-align: left;
+    width: 100%;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 8px 12px;
+}
+
+/* 3D COVER FLOW VIEW */
+.coverflow-stage {
+    width: 100%;
+    height: 100%;
+    background: #000000;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    perspective: 500px;
+}
+
+.coverflow-carousel {
+    position: relative;
+    width: 100%;
+    height: 145px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform-style: preserve-3d;
+}
+
+.coverflow-card {
+    position: absolute;
+    width: 110px;
+    height: 110px;
+    border-radius: 4px;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.15);
+    transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.28s ease, filter 0.28s ease;
+    -webkit-box-reflect: below 2px linear-gradient(transparent, transparent 65%, rgba(255, 255, 255, 0.35));
+    cursor: pointer;
+}
+
+.coverflow-meta {
+    width: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.6) 80%, transparent);
+    padding: 6px 12px 8px;
+    text-align: center;
+    color: #ffffff;
+    z-index: 10;
+}
+
+.cf-title {
+    font-size: 12px;
+    font-weight: 800;
+    color: #f8fafc;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.cf-sub {
+    font-size: 9.5px;
+    font-weight: 600;
+    color: #94a3b8;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 1px;
+}
+
+.cf-count {
+    font-size: 8.5px;
+    font-family: 'Space Mono', monospace;
+    color: #38bdf8;
+    margin-top: 1px;
+}
+
+/* INTERACTIVE LYRICS VIEW */
+.lyrics-view-container {
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 20%, #1e293b 0%, #0f172a 100%);
+    color: #f8fafc;
+    display: flex;
+    flex-direction: column;
+    padding: 8px 12px;
+    overflow: hidden;
+}
+
+.lyrics-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    padding-bottom: 4px;
+    margin-bottom: 4px;
+    flex-shrink: 0;
+}
+
+.lyrics-track-name {
+    font-size: 10.5px;
+    font-weight: 800;
+    color: #38bdf8;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 175px;
+}
+
+.lyrics-header-right {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.lyrics-status-badge {
+    font-family: 'Space Mono', monospace;
+    font-size: 7.5px;
+    font-weight: 800;
+    color: #38bdf8;
+    background: rgba(56, 189, 248, 0.15);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    padding: 1px 5px;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+}
+
+.lyrics-btn-edit {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #e2e8f0;
+    border-radius: 4px;
+    font-size: 9px;
+    padding: 2px 6px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.lyrics-btn-edit:hover {
+    background: #38bdf8;
+    color: #0f172a;
+}
+
+.lyrics-scroller {
+    flex: 1;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    padding: 8px 4px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.lyrics-scroller::-webkit-scrollbar {
+    width: 3px;
+}
+.lyrics-scroller::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 3px;
+}
+
+.lyrics-footer-bar {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 3px;
+    margin-top: 2px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.lyrics-hint {
+    font-size: 8px;
+    color: #94a3b8;
+}
+
+.lyrics-empty-msg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #94a3b8;
+    font-size: 10px;
+    text-align: center;
+    padding: 15px 10px;
+    line-height: 1.5;
+}
+
+.lyrics-action-btn {
+    background: #0284c7;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-size: 9.5px;
+    font-weight: 700;
+    padding: 5px 12px;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.15s ease;
+}
+
+.lyrics-action-btn:hover {
+    background: #0369a1;
+}
+
+.lyric-line {
+    font-size: 10.5px;
+    line-height: 1.5;
+    color: #94a3b8;
+    transition: all 0.18s ease;
+    padding: 3px 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.lyric-line:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.lyric-line.past {
+    opacity: 0.5;
+}
+
+.lyric-line.future {
+    opacity: 0.75;
+}
+
+.lyric-line.active {
+    font-size: 12.5px;
+    font-weight: 800;
+    color: #ffffff;
+    text-shadow: 0 0 12px rgba(56, 189, 248, 0.9), 0 0 3px #0284c7;
+    background: rgba(56, 189, 248, 0.14);
+    border-radius: 6px;
+    transform: scale(1.03);
+    opacity: 1;
+}
+
+/* Now playing lyrics quick pill */
+.now-playing-lyrics-pill {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #e2e8f0;
+    font-size: 8px;
+    font-weight: 700;
+    font-family: 'Space Mono', monospace;
+    padding: 2px 6px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: all 0.15s;
+    z-index: 10;
+}
+
+.now-playing-lyrics-pill:hover {
+    background: #0284c7;
+    color: #ffffff;
+    border-color: #38bdf8;
+}
+
+/* VIDEOS VIEW */
+.videos-container {
+    width: 100%;
+    height: 100%;
+    background: #000000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.video-screen-wrapper {
+    position: relative;
+    width: 100%;
+    height: 155px;
+    background: #0a0e17;
+    border: 1px solid #1e293b;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+}
+
+#video-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.video-overlay-hud {
+    position: absolute;
+    top: 6px;
+    left: 8px;
+    background: rgba(0, 0, 0, 0.6);
+    color: #38bdf8;
+    font-size: 9px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 4px;
+    backdrop-filter: blur(4px);
+}
+
+.video-controls-info {
+    margin-top: 8px;
+    font-size: 10px;
+    font-weight: 600;
+    color: #94a3b8;
+}
+
+/* PHOTOS VIEW */
+.photos-container {
+    width: 100%;
+    height: 100%;
+    background: #090d16;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 6px;
+}
+
+.photo-frame {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000000;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+#photo-viewer-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.photo-info-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(6px);
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 10px;
+    font-size: 9.5px;
+    font-weight: 700;
+    color: #f8fafc;
+}
+
+/* RETRO CLOCK & STOPWATCH */
+.clock-container {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, #f8fafc, #e2e8f0);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.digital-clock-face {
+    text-align: center;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 8px 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.clock-time-large {
+    font-family: 'Space Mono', monospace;
+    font-size: 24px;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: 0.04em;
+}
+
+.clock-date-str {
+    font-size: 10px;
+    font-weight: 600;
+    color: #64748b;
+    margin-top: 1px;
+}
+
+.stopwatch-section {
+    background: #0f172a;
+    border-radius: 8px;
+    padding: 8px;
+    text-align: center;
+    color: #ffffff;
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+.stopwatch-label {
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    color: #38bdf8;
+    margin-bottom: 2px;
+}
+
+.stopwatch-time {
+    font-family: 'Space Mono', monospace;
+    font-size: 19px;
+    font-weight: 800;
+    color: #38bdf8;
+    letter-spacing: 0.08em;
+}
+
+.stopwatch-actions {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.sw-pill {
+    font-size: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: #cbd5e1;
+}
+
+/* RETRO BRICK BREAKOUT GAME */
+.game-container {
+    width: 100%;
+    height: 100%;
+    background: #000000;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+.game-top-bar {
+    height: 18px;
+    background: #111827;
+    color: #e2e8f0;
+    font-size: 9.5px;
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 8px;
+    border-bottom: 1px solid #374151;
+}
+
+#game-canvas {
+    flex: 1;
+    width: 100%;
+    display: block;
+    background: #030712;
+}
+
+.game-instructions {
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 8.5px;
+    font-weight: 600;
+    color: #94a3b8;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 2px 4px;
+}
+
+/* REAL-TIME MUSIC VISUALIZER VIEW */
+.visualizer-container {
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 30%, #0c1524 0%, #030712 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 8px 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.visualizer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+    padding-bottom: 4px;
+}
+
+#vis-track-title {
+    font-size: 11px;
+    font-weight: 800;
+    color: #f8fafc;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 180px;
+}
+
+.vis-mode-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 8.5px;
+    font-weight: 700;
+    color: #38bdf8;
+    background: rgba(56, 189, 248, 0.15);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    border-radius: 4px;
+    padding: 1px 5px;
+}
+
+#visualizer-canvas {
+    width: 100%;
+    height: 145px;
+    display: block;
+    border-radius: 4px;
+    background: rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.8);
+}
+
+.visualizer-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 2px;
+}
+
+.vis-pill {
+    font-size: 8px;
+    color: #94a3b8;
+    font-family: 'Space Mono', monospace;
+}
+
+/* SCREENSAVER OVERLAY */
+.screensaver-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, #0f172a 0%, #000000 100%);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.6s ease;
+}
+
+.screensaver-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.screensaver-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    animation: ssFloat 6s ease-in-out infinite alternate;
+}
+
+@keyframes ssFloat {
+    0% { transform: translateY(-6px) scale(0.98); }
+    100% { transform: translateY(6px) scale(1.02); }
+}
+
+.ss-apple-logo {
+    font-size: 28px;
+    color: #f8fafc;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.4));
+}
+
+.ss-clock {
+    font-family: 'Space Mono', monospace;
+    font-size: 26px;
+    font-weight: 800;
+    color: #38bdf8;
+    text-shadow: 0 0 12px rgba(56, 189, 248, 0.7);
+    letter-spacing: 0.05em;
+}
+
+.ss-date {
+    font-size: 10px;
+    font-weight: 600;
+    color: #94a3b8;
+}
+
+.ss-hint {
+    font-size: 8px;
+    color: #64748b;
+    margin-top: 2px;
+}
+
+/* MENU SLIDE TRANSITIONS */
+@keyframes slideRightIn {
+    0% { transform: translateX(100%); opacity: 0; }
+    100% { transform: translateX(0); opacity: 1; }
+}
+@keyframes slideLeftIn {
+    0% { transform: translateX(-100%); opacity: 0; }
+    100% { transform: translateX(0); opacity: 1; }
+}
+
+.menu-pane-left.slide-in-right {
+    animation: slideRightIn 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.menu-pane-left.slide-in-left {
+    animation: slideLeftIn 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* ==========================================================================
+   THEME DEFINITIONS: CLASSIC WHITE, U2 EDITION, SPACE GRAY
+   ========================================================================== */
+
+/* CLASSIC WHITE (Iconic 2001-2007 Signature Look) */
+#ipod.theme-classic-white {
+    background: linear-gradient(175deg, #ffffff 0%, #f1f5f9 50%, #e2e8f0 100%);
+    border-color: #cbd5e1;
+    box-shadow: 
+        0 0 0 2px #e2e8f0,
+        0 0 0 5px #cbd5e1,
+        0 0 0 6px #94a3b8,
+        0 30px 70px rgba(0, 0, 0, 0.4),
+        0 10px 25px rgba(0, 0, 0, 0.2),
+        inset 0 3px 6px rgba(255, 255, 255, 0.95),
+        inset 0 -3px 8px rgba(0, 0, 0, 0.1);
+}
+#ipod.theme-classic-white .click-wheel {
+    background: linear-gradient(145deg, #f1f5f9 0%, #e2e8f0 50%, #cbd5e1 100%);
+    box-shadow: 
+        inset 0 3px 6px rgba(255, 255, 255, 0.8),
+        inset 0 -3px 6px rgba(0, 0, 0, 0.2),
+        0 6px 16px rgba(0, 0, 0, 0.25);
+}
+#ipod.theme-classic-white .wheel-btn {
+    color: #475569;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+#ipod.theme-classic-white .wheel-btn:hover {
+    color: #0f172a;
+}
+#ipod.theme-classic-white .center-button {
+    background: radial-gradient(circle at 35% 35%, #ffffff 0%, #f8fafc 65%, #e2e8f0 100%);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 
+        0 2px 6px rgba(0, 0, 0, 0.2),
+        inset 0 2px 4px rgba(255, 255, 255, 0.9),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+#ipod.theme-classic-white .bottom-branding {
+    color: #64748b;
+}
+
+/* U2 SPECIAL EDITION (Jet Black with Crimson Red Click Wheel) */
+#ipod.theme-u2-edition {
+    background: linear-gradient(155deg, #18181b 0%, #09090b 50%, #000000 100%);
+    border-color: #3f3f46;
+    box-shadow: 
+        0 0 0 2px #ef4444,
+        0 0 0 5px #18181b,
+        0 0 0 6px #7f1d1d,
+        0 30px 70px rgba(0, 0, 0, 0.95),
+        0 10px 25px rgba(220, 38, 38, 0.25),
+        inset 0 3px 6px rgba(255, 255, 255, 0.2),
+        inset 0 -3px 8px rgba(0, 0, 0, 0.9);
+}
+#ipod.theme-u2-edition .click-wheel {
+    background: linear-gradient(145deg, #ef4444 0%, #dc2626 50%, #b91c1c 100%);
+    box-shadow: 
+        inset 0 3px 6px rgba(255, 255, 255, 0.4),
+        inset 0 -3px 6px rgba(0, 0, 0, 0.6),
+        0 6px 20px rgba(220, 38, 38, 0.45);
+}
+#ipod.theme-u2-edition .wheel-btn {
+    color: #ffffff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+#ipod.theme-u2-edition .center-button {
+    background: radial-gradient(circle at 35% 35%, #27272a 0%, #18181b 65%, #09090b 100%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 
+        0 3px 8px rgba(0, 0, 0, 0.9),
+        inset 0 2px 4px rgba(255, 255, 255, 0.2),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.8);
+}
+#ipod.theme-u2-edition .bottom-branding {
+    color: #ef4444;
+}
+
+/* ========================================================
+   CYBER PHOSPHOR GREEN & DEFTONES EDITION THEME
+   ======================================================== */
+#ipod.theme-cyber-green {
+    background: radial-gradient(circle at 50% 25%, #052012 0%, #021208 55%, #000502 100%);
+    border-color: #22c55e;
+    box-shadow: 
+        0 0 0 2px #4ade80,
+        0 0 0 5px #052e16,
+        0 0 0 6px #16a34a,
+        0 30px 70px rgba(0, 0, 0, 0.95),
+        0 10px 30px rgba(34, 197, 94, 0.45),
+        inset 0 3px 8px rgba(74, 222, 128, 0.35),
+        inset 0 -3px 8px rgba(0, 0, 0, 0.95);
+}
+
+/* Creation of Adam Hands Banner on Front Chassis */
+.creation-hands-banner {
+    width: 298px;
+    height: 48px;
+    margin: 4px auto 2px;
+    border-radius: 8px;
+    background-image: url('assets/theme-green-creation.jpg');
+    background-size: cover;
+    background-position: center 30%;
+    border: 1.5px solid rgba(74, 222, 128, 0.5);
+    box-shadow: 0 0 14px rgba(34, 197, 94, 0.45), inset 0 0 8px rgba(0, 0, 0, 0.8);
+    display: none;
+    opacity: 0.95;
+    position: relative;
+    overflow: hidden;
+}
+
+.creation-hands-banner::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.28) 0px,
+        rgba(0, 0, 0, 0.28) 1px,
+        transparent 1px,
+        transparent 2px
+    );
+    pointer-events: none;
+}
+
+#ipod.theme-cyber-green .creation-hands-banner {
+    display: block;
+}
+
+/* Click Wheel */
+#ipod.theme-cyber-green .click-wheel {
+    background: radial-gradient(circle at 50% 50%, #062b16 0%, #03170a 60%, #010a04 100%);
+    box-shadow: 
+        inset 0 3px 6px rgba(74, 222, 128, 0.35),
+        inset 0 -3px 6px rgba(0, 0, 0, 0.9),
+        0 6px 20px rgba(34, 197, 94, 0.45),
+        0 0 0 1px rgba(34, 197, 94, 0.4);
+}
+
+#ipod.theme-cyber-green .wheel-btn {
+    color: #4ade80;
+    text-shadow: 0 0 8px rgba(74, 222, 128, 0.8), 0 1px 2px rgba(0, 0, 0, 0.9);
+}
+
+#ipod.theme-cyber-green .wheel-btn:hover {
+    color: #86efac;
+    text-shadow: 0 0 12px rgba(134, 239, 172, 1);
+}
+
+/* Center Button with Glowing Deftones Owl Medallion */
+#ipod.theme-cyber-green .center-button {
+    background: radial-gradient(circle at 35% 35%, #052e16 0%, #021a0c 65%, #000000 100%);
+    border: 1.5px solid #22c55e;
+    box-shadow: 
+        0 3px 8px rgba(0, 0, 0, 0.9),
+        0 0 14px rgba(34, 197, 94, 0.6),
+        inset 0 2px 4px rgba(74, 222, 128, 0.5),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.8);
+    position: relative;
+    overflow: hidden;
+}
+
+#ipod.theme-cyber-green .center-button-inner {
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    background-image: url('assets/theme-green-deftones.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: brightness(1.08) contrast(1.15) drop-shadow(0 0 5px #22c55e);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.6);
+}
+
+/* Bottom Branding */
+#ipod.theme-cyber-green .bottom-branding {
+    color: #4ade80;
+    text-shadow: 0 0 8px rgba(74, 222, 128, 0.8);
+}
+
+/* LCD Phosphor Screen Aesthetics */
+#ipod.theme-cyber-green .status-bar {
+    background: linear-gradient(to bottom, #052e16 0%, #021a0c 100%);
+    border-bottom: 1px solid #16a34a;
+    color: #4ade80;
+}
+
+#ipod.theme-cyber-green #status-title,
+#ipod.theme-cyber-green .status-title {
+    color: #86efac;
+    text-shadow: 0 0 6px rgba(74, 222, 128, 0.7);
+}
+
+#ipod.theme-cyber-green .status-icon {
+    color: #4ade80;
+}
+
+#ipod.theme-cyber-green .battery-gauge {
+    border-color: #22c55e;
+}
+
+#ipod.theme-cyber-green .battery-level {
+    background: #22c55e;
+    box-shadow: 0 0 6px #4ade80;
+}
+
+#ipod.theme-cyber-green .menu-header {
+    background: linear-gradient(to bottom, #052e16 0%, #02180a 100%);
+    color: #86efac;
+    border-bottom: 1px solid #16a34a;
+    text-shadow: 0 0 6px rgba(74, 222, 128, 0.6);
+}
+
+#ipod.theme-cyber-green .menu-pane-left {
+    background: #020d06;
+}
+
+#ipod.theme-cyber-green .menu-item {
+    color: #bbf7d0;
+}
+
+#ipod.theme-cyber-green .menu-item.selected {
+    background: linear-gradient(to right, #16a34a, #15803d) !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 10px rgba(34, 197, 94, 0.6);
+}
+
+#ipod.theme-cyber-green .menu-pane-right {
+    background: #010804;
+}
+
+#ipod.theme-cyber-green .player-container {
+    background: radial-gradient(circle at 50% 25%, #052e16 0%, #02140a 60%, #000000 100%);
+    color: #f0fdf4;
+}
+
+#ipod.theme-cyber-green .player-progress-fill {
+    background: linear-gradient(to right, #4ade80, #22c55e);
+    box-shadow: 0 0 8px rgba(74, 222, 128, 0.8);
+}
+
+#ipod.theme-cyber-green .hud-bar-fill,
+#ipod.theme-cyber-green .player-vol-fill {
+    background: linear-gradient(to right, #4ade80, #22c55e);
+}
+
+#ipod.theme-cyber-green .screensaver-overlay {
+    background: radial-gradient(circle at center, #052e16 0%, #000000 100%);
+}
+
+#ipod.theme-cyber-green .ss-apple-logo {
+    color: #4ade80;
+    filter: drop-shadow(0 0 12px rgba(74, 222, 128, 0.8));
+}
+
+#ipod.theme-cyber-green .ss-clock {
+    color: #4ade80;
+    text-shadow: 0 0 14px rgba(74, 222, 128, 0.9);
+}
+
+#ipod.theme-cyber-green .ss-date {
+    color: #86efac;
+}
+
+#ipod.theme-cyber-green .lyrics-view-container {
+    background: radial-gradient(circle at 50% 20%, #052e16 0%, #011208 100%);
+}
+
+#ipod.theme-cyber-green .lyrics-track-name {
+    color: #4ade80;
+    text-shadow: 0 0 6px rgba(74, 222, 128, 0.7);
+}
+
+#ipod.theme-cyber-green .lyrics-status-badge {
+    color: #86efac;
+    background: rgba(34, 197, 94, 0.2);
+    border-color: #22c55e;
+}
+
+#ipod.theme-cyber-green .lyrics-btn-edit:hover {
+    background: #22c55e;
+    color: #021a0c;
+}
+
+#ipod.theme-cyber-green .lyric-line.active {
+    color: #bbf7d0;
+    text-shadow: 0 0 12px rgba(74, 222, 128, 0.95), 0 0 4px #22c55e;
+    background: rgba(34, 197, 94, 0.18);
+}
+
+#ipod.theme-cyber-green .now-playing-lyrics-pill:hover {
+    background: #16a34a;
+    border-color: #4ade80;
+}
+
+/* ========================================================
+   CYBER MIDNIGHT PURPLE & COSMIC HORIZON EDITION THEME
+   ======================================================== */
+#ipod.theme-cyber-purple {
+    background: radial-gradient(circle at 50% 25%, #230b3f 0%, #120324 55%, #05000d 100%);
+    border-color: #a855f7;
+    box-shadow: 
+        0 0 0 2px #c084fc,
+        0 0 0 5px #1e053a,
+        0 0 0 6px #7e22ce,
+        0 30px 70px rgba(0, 0, 0, 0.95),
+        0 10px 30px rgba(168, 85, 247, 0.45),
+        inset 0 3px 8px rgba(192, 132, 252, 0.4),
+        inset 0 -3px 8px rgba(0, 0, 0, 0.95);
+}
+
+/* Midnight Purple Drift Banner on Front Chassis */
+.purple-drift-banner {
+    width: 298px;
+    height: 48px;
+    margin: 4px auto 2px;
+    border-radius: 8px;
+    background-image: url('assets/theme-purple-drift.jpg');
+    background-size: cover;
+    background-position: center 65%;
+    border: 1.5px solid rgba(192, 132, 252, 0.55);
+    box-shadow: 0 0 14px rgba(168, 85, 247, 0.45), inset 0 0 8px rgba(0, 0, 0, 0.8);
+    display: none;
+    opacity: 0.95;
+    position: relative;
+    overflow: hidden;
+}
+
+.purple-drift-banner::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.25) 0px,
+        rgba(0, 0, 0, 0.25) 1px,
+        transparent 1px,
+        transparent 2px
+    );
+    pointer-events: none;
+}
+
+#ipod.theme-cyber-purple .purple-drift-banner {
+    display: block;
+}
+
+/* Click Wheel */
+#ipod.theme-cyber-purple .click-wheel {
+    background: radial-gradient(circle at 50% 50%, #1c0533 0%, #100221 60%, #06000e 100%);
+    box-shadow: 
+        inset 0 3px 6px rgba(192, 132, 252, 0.35),
+        inset 0 -3px 6px rgba(0, 0, 0, 0.9),
+        0 6px 20px rgba(168, 85, 247, 0.45),
+        0 0 0 1px rgba(168, 85, 247, 0.4);
+}
+
+#ipod.theme-cyber-purple .wheel-btn {
+    color: #e879f9;
+    text-shadow: 0 0 8px rgba(232, 121, 249, 0.8), 0 1px 2px rgba(0, 0, 0, 0.9);
+}
+
+#ipod.theme-cyber-purple .wheel-btn:hover {
+    color: #f5d0fe;
+    text-shadow: 0 0 12px rgba(245, 208, 254, 1);
+}
+
+/* Center Button with Glowing Cosmic Event Horizon Medallion */
+#ipod.theme-cyber-purple .center-button {
+    background: radial-gradient(circle at 35% 35%, #2a084e 0%, #17032d 65%, #05000d 100%);
+    border: 1.5px solid #c084fc;
+    box-shadow: 
+        0 3px 8px rgba(0, 0, 0, 0.9),
+        0 0 14px rgba(168, 85, 247, 0.65),
+        inset 0 2px 4px rgba(192, 132, 252, 0.5),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.8);
+    position: relative;
+    overflow: hidden;
+}
+
+#ipod.theme-cyber-purple .center-button::after {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border-radius: 50%;
+    background-image: url('assets/theme-purple-blackhole.jpg');
+    background-size: cover;
+    background-position: center center;
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.8), 0 0 8px rgba(192, 132, 252, 0.6);
+    border: 1px solid rgba(192, 132, 252, 0.7);
+    pointer-events: none;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), filter 0.2s;
+}
+
+#ipod.theme-cyber-purple .center-button:active::after {
+    transform: scale(0.92);
+    filter: brightness(1.25);
+}
+
+/* Screen CRT / LCD in Midnight Purple */
+#ipod.theme-cyber-purple .screen-bezel {
+    background: #090114;
+    border-color: #3b0764;
+    box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.95), 0 1px 2px rgba(168, 85, 247, 0.3);
+}
+
+#ipod.theme-cyber-purple #ipod-screen {
+    background: #0c0217;
+    color: #f5d0fe;
+}
+
+#ipod.theme-cyber-purple .screen-header {
+    background: linear-gradient(180deg, #240b42 0%, #150328 100%);
+    border-bottom: 1px solid #7e22ce;
+    color: #f5d0fe;
+    text-shadow: 0 0 4px rgba(232, 121, 249, 0.6);
+}
+
+#ipod.theme-cyber-purple .battery-body {
+    border-color: #c084fc;
+}
+
+#ipod.theme-cyber-purple .battery-tip {
+    background: #c084fc;
+}
+
+#ipod.theme-cyber-purple .battery-fill {
+    background: linear-gradient(180deg, #e879f9 0%, #a855f7 100%);
+    box-shadow: 0 0 6px #e879f9;
+}
+
+#ipod.theme-cyber-purple .status-play-icon {
+    color: #e879f9;
+}
+
+#ipod.theme-cyber-purple .menu-item {
+    color: #f3e8ff;
+}
+
+#ipod.theme-cyber-purple .menu-item.selected {
+    background: linear-gradient(90deg, #6b21a8 0%, #9333ea 50%, #a855f7 100%) !important;
+    color: #ffffff !important;
+    text-shadow: 0 0 6px rgba(245, 208, 254, 0.9);
+}
+
+#ipod.theme-cyber-purple .menu-item.selected .chevron {
+    color: #ffffff !important;
+}
+
+#ipod.theme-cyber-purple .music-progress-bar {
+    background: #1c0533;
+    border: 1px solid #7e22ce;
+}
+
+#ipod.theme-cyber-purple .music-progress-fill {
+    background: linear-gradient(90deg, #9333ea 0%, #c084fc 100%);
+    box-shadow: 0 0 8px #c084fc;
+}
+
+#ipod.theme-cyber-purple .volume-bar {
+    background: #1c0533;
+    border: 1px solid #7e22ce;
+}
+
+#ipod.theme-cyber-purple .volume-fill {
+    background: linear-gradient(90deg, #9333ea 0%, #e879f9 100%);
+    box-shadow: 0 0 8px #e879f9;
+}
+
+#ipod.theme-cyber-purple .spin-vinyl {
+    border: 2px solid #a855f7;
+    box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
+}
+
+#ipod.theme-cyber-purple .lyrics-view-container {
+    background: #0c0217;
+}
+
+#ipod.theme-cyber-purple .lyrics-header {
+    background: #1a052e;
+    border-bottom: 1px solid #7e22ce;
+}
+
+#ipod.theme-cyber-purple .lyrics-track-name {
+    color: #f5d0fe;
+    text-shadow: 0 0 6px rgba(232, 121, 249, 0.6);
+}
+
+#ipod.theme-cyber-purple .lyrics-status-badge {
+    background: #6b21a8;
+    color: #f5d0fe;
+    border: 1px solid #c084fc;
+    box-shadow: 0 0 6px rgba(192, 132, 252, 0.6);
+}
+
+#ipod.theme-cyber-purple .lyrics-footer-bar {
+    background: #150326;
+    border-top: 1px solid #7e22ce;
+    color: #d8b4fe;
+}
+
+#ipod.theme-cyber-purple .lyric-line {
+    color: #7e22ce;
+}
+
+#ipod.theme-cyber-purple .lyric-line.active {
+    color: #fdf4ff;
+    text-shadow: 0 0 14px rgba(232, 121, 249, 1), 0 0 4px #a855f7;
+    background: rgba(168, 85, 247, 0.22);
+}
+
+#ipod.theme-cyber-purple .now-playing-lyrics-pill:hover {
+    background: #7e22ce;
+    border-color: #c084fc;
+}
+
+/* SPACE GRAY (Anodized Aluminum Finish) */
+#ipod.theme-space-gray {
+    background: linear-gradient(155deg, #4b5563 0%, #374151 50%, #1f2937 100%);
+    border-color: #6b7280;
+    box-shadow: 
+        0 0 0 2px #9ca3af,
+        0 0 0 5px #374151,
+        0 0 0 6px #1f2937,
+        0 30px 70px rgba(0, 0, 0, 0.85),
+        0 10px 25px rgba(0, 0, 0, 0.6),
+        inset 0 3px 6px rgba(255, 255, 255, 0.3),
+        inset 0 -3px 8px rgba(0, 0, 0, 0.7);
+}
+#ipod.theme-space-gray .click-wheel {
+    background: linear-gradient(145deg, #1f2937 0%, #111827 60%, #030712 100%);
+}
+#ipod.theme-space-gray .center-button {
+    background: radial-gradient(circle at 35% 35%, #4b5563 0%, #374151 65%, #1f2937 100%);
+}
+#ipod.theme-space-gray .bottom-branding {
+    color: #9ca3af;
+}
+
+/* 4. ICONIC RETRO CLICK WHEEL */
+.wheel-area {
+    margin-top: 14px;
+    position: relative;
+    z-index: 5;
+}
+
+.click-wheel {
+    position: relative;
+    width: 205px;
+    height: 205px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #282d38 0%, #171b23 50%, #0d1017 100%);
+    box-shadow: 
+        inset 0 3px 6px rgba(255, 255, 255, 0.16),
+        inset 0 -3px 6px rgba(0, 0, 0, 0.7),
+        0 6px 16px rgba(0, 0, 0, 0.75),
+        0 1px 3px rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    touch-action: none;
+}
+
+/* Wheel Perimeter Buttons */
+.wheel-btn {
+    position: absolute;
+    background: transparent;
+    border: none;
+    color: #cbd5e1;
+    font-weight: 800;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 12px;
+    cursor: pointer;
+    transition: color 0.15s ease, transform 0.1s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+    z-index: 6;
+}
+
+.wheel-btn:hover {
+    color: #ffffff;
+}
+
+.wheel-btn:active {
+    transform: scale(0.92);
+    color: #38bdf8;
+}
+
+.btn-menu {
+    top: 15px;
+    letter-spacing: 0.08em;
+}
+
+.btn-prev {
+    left: 16px;
+    font-size: 14px;
+}
+
+.btn-next {
+    right: 16px;
+    font-size: 14px;
+}
+
+.btn-play {
+    bottom: 15px;
+    font-size: 13px;
+    gap: 3px;
+}
+
+/* CENTER BUTTON (TACTILE BRUSHED METAL) */
+.center-button {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #475569 0%, #1e293b 65%, #0f172a 100%);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 
+        0 3px 8px rgba(0, 0, 0, 0.8),
+        inset 0 2px 4px rgba(255, 255, 255, 0.3),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 7;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.center-button:active {
+    transform: scale(0.95);
+    box-shadow: 
+        0 1px 3px rgba(0, 0, 0, 0.9),
+        inset 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.center-button-inner {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.04) 0%, transparent 80%);
+}
+
+/* 5. BOTTOM BRANDING */
+.bottom-branding {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: #64748b;
+    margin-top: 4px;
+    text-transform: uppercase;
+    font-family: 'Space Mono', monospace;
+    opacity: 0.8;
+}
+
+/* 6. EXTERNAL CONTROLS & INSTRUCTIONS BAR */
+.quick-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.tool-group {
+    display: inline-flex;
+    align-items: center;
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 999px;
+    padding: 2px 4px;
+    gap: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.tool-group .tool-pill {
+    box-shadow: none;
+    border: none;
+    padding: 6px 12px;
+}
+
+.vol-badge {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    color: #38bdf8;
+    min-width: 38px;
+    text-align: center;
+}
+
+.tool-pill {
+    background: #1e293b;
+    color: #e2e8f0;
+    border: 1px solid #334155;
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.15s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.tool-pill:hover {
+    background: #334155;
+    color: #38bdf8;
+    border-color: #64748b;
+    transform: translateY(-1px);
+}
+
+.tool-pill:active {
+    transform: translateY(1px);
+}
+
+/* ========================================================
+   8. MIRROR CHROME BACK CASING & LASER ENGRAVED SIGNATURES
+   ======================================================== */
+.theme-u2-back {
+    background: linear-gradient(135deg, #cbd5e1 0%, #f1f5f9 20%, #94a3b8 42%, #e2e8f0 55%, #ffffff 70%, #64748b 90%, #cbd5e1 100%) !important;
+    border: 3px solid #94a3b8 !important;
+    box-shadow: 
+        0 0 0 2px #e2e8f0,
+        0 0 0 5px #64748b,
+        0 0 0 6px #475569,
+        0 30px 70px rgba(0, 0, 0, 0.95),
+        inset 0 2px 6px rgba(255, 255, 255, 0.8),
+        inset 0 -2px 6px rgba(0, 0, 0, 0.6) !important;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    user-select: none;
+}
+
+.chrome-mirror-sheen {
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        115deg,
+        rgba(255, 255, 255, 0) 35%,
+        rgba(255, 255, 255, 0.45) 45%,
+        rgba(255, 255, 255, 0.8) 50%,
+        rgba(255, 255, 255, 0.45) 55%,
+        rgba(255, 255, 255, 0) 65%
+    );
+    transform: rotate(25deg);
+    pointer-events: none;
+    opacity: 0.75;
+}
+
+.back-engravings-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 20px 22px;
+    position: relative;
+    z-index: 5;
+    color: #1e293b;
+    text-align: center;
+}
+
+.back-apple-logo {
+    font-size: 46px;
+    color: #0f172a;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9), 0 -1px 1px rgba(0, 0, 0, 0.4);
+    line-height: 1;
+}
+
+.back-ipod-logo {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: #0f172a;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
+    margin-top: 4px;
+}
+
+.back-storage-badge {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    color: #334155;
+    letter-spacing: 0.05em;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+/* Laser-Engraved U2 Signatures Grid */
+.u2-signatures-section {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.25);
+    border-top: 1px dashed rgba(51, 65, 85, 0.5);
+    border-bottom: 1px dashed rgba(51, 65, 85, 0.5);
+    border-radius: 8px;
+    padding: 12px 10px 14px;
+    margin: 12px 0;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.u2-edition-title {
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.18em;
+    color: #b91c1c;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+    margin-bottom: 10px;
+}
+
+.signatures-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 14px;
+}
+
+.signature-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+}
+
+.sig-name {
+    color: #0f172a;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8), 0 -1px 0 rgba(0, 0, 0, 0.2);
+    user-select: none;
+    line-height: 1.1;
+}
+
+.sig-bono {
+    font-family: 'Rock Salt', cursive;
+    font-size: 15px;
+    transform: rotate(-3deg);
+}
+
+.sig-the-edge {
+    font-family: 'Caveat', cursive;
+    font-size: 24px;
+    font-weight: 700;
+    transform: rotate(2deg);
+}
+
+.sig-adam {
+    font-family: 'Reenie Beanie', cursive;
+    font-size: 27px;
+    font-weight: 700;
+    transform: rotate(-2deg);
+}
+
+.sig-larry {
+    font-family: 'Caveat', cursive;
+    font-size: 22px;
+    font-weight: 700;
+    transform: rotate(1deg);
+}
+
+.sig-role {
+    font-size: 8px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #475569;
+    margin-top: 2px;
+    font-family: 'Space Mono', monospace;
+}
+
+.back-serial-legal {
+    font-family: 'Space Mono', monospace;
+    font-size: 7.5px;
+    line-height: 1.5;
+    color: #475569;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.back-hint-pill {
+    background: rgba(15, 23, 42, 0.85);
+    color: #f8fafc;
+    font-size: 9px;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    margin-top: 6px;
+    transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.back-hint-pill:hover {
+    background: #0f172a;
+    transform: scale(1.05);
+}
+
+/* Smoked Emerald Chrome Backplate for Cyber Green Theme */
+#ipod-back.theme-cyber-green-back {
+    background: linear-gradient(135deg, #052e16 0%, #021a0c 18%, #14532d 42%, #052e16 55%, #15803d 72%, #021509 90%, #052e16 100%) !important;
+    border: 3px solid #16a34a !important;
+    box-shadow: 
+        0 0 0 2px #4ade80,
+        0 0 0 5px #052e16,
+        0 0 0 6px #166534,
+        0 30px 70px rgba(0, 0, 0, 0.95),
+        0 0 25px rgba(34, 197, 94, 0.5),
+        inset 0 2px 6px rgba(74, 222, 128, 0.6),
+        inset 0 -2px 6px rgba(0, 0, 0, 0.8) !important;
+}
+
+#ipod-back.theme-cyber-green-back .back-apple-logo,
+#ipod-back.theme-cyber-green-back .back-ipod-logo {
+    color: #4ade80;
+    text-shadow: 0 0 10px rgba(74, 222, 128, 0.8), 0 1px 0 rgba(0, 0, 0, 0.8);
+}
+
+#ipod-back.theme-cyber-green-back .back-storage-badge {
+    color: #86efac;
+    text-shadow: 0 0 6px rgba(134, 239, 172, 0.6);
+}
+
+#ipod-back.theme-cyber-green-back .back-serial-legal {
+    color: #86efac;
+    opacity: 0.85;
+}
+
+/* Deftones Back Section */
+.deftones-back-section {
+    width: 100%;
+    background: rgba(5, 46, 22, 0.45);
+    border-top: 1px dashed rgba(74, 222, 128, 0.6);
+    border-bottom: 1px dashed rgba(74, 222, 128, 0.6);
+    border-radius: 8px;
+    padding: 10px 8px 12px;
+    margin: 8px 0;
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.4), 0 0 10px rgba(34, 197, 94, 0.3);
+}
+
+.deftones-edition-title {
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 0.16em;
+    color: #4ade80;
+    text-shadow: 0 0 8px rgba(74, 222, 128, 0.8);
+    margin-bottom: 2px;
+}
+
+.deftones-sub-badge {
+    font-family: 'Space Mono', monospace;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #86efac;
+    margin-bottom: 8px;
+}
+
+.deftones-visual-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 10px;
+}
+
+.deftones-disc-frame {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1.5px solid #4ade80;
+    overflow: hidden;
+    box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
+}
+
+.engraved-back-art {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(1.1) contrast(1.2);
+}
+
+.deftones-grid .sig-name {
+    color: #4ade80 !important;
+    text-shadow: 0 0 6px rgba(74, 222, 128, 0.8) !important;
+}
+
+.deftones-grid .sig-role {
+    color: #86efac !important;
+}
+
+/* Smoked Violet Chrome Backplate for Cyber Purple Theme */
+#ipod-back.theme-cyber-purple-back {
+    background: linear-gradient(135deg, #1c0533 0%, #0e021c 18%, #2e0854 42%, #140326 55%, #4a0e80 72%, #0a0114 90%, #1c0533 100%) !important;
+    border: 3px solid #9333ea !important;
+    box-shadow: 
+        0 0 0 2px #c084fc,
+        0 0 0 5px #1c0533,
+        0 0 0 6px #6b21a8,
+        0 30px 70px rgba(0, 0, 0, 0.95),
+        0 0 25px rgba(168, 85, 247, 0.5),
+        inset 0 2px 6px rgba(192, 132, 252, 0.6),
+        inset 0 -2px 6px rgba(0, 0, 0, 0.8) !important;
+}
+
+#ipod-back.theme-cyber-purple-back .back-apple-logo,
+#ipod-back.theme-cyber-purple-back .back-ipod-logo {
+    color: #e879f9;
+    text-shadow: 0 0 10px rgba(232, 121, 249, 0.8), 0 1px 0 rgba(0, 0, 0, 0.8);
+}
+
+#ipod-back.theme-cyber-purple-back .back-storage-badge {
+    color: #f0abfc;
+    text-shadow: 0 0 6px rgba(240, 171, 252, 0.6);
+}
+
+#ipod-back.theme-cyber-purple-back .back-serial-legal {
+    color: #f0abfc;
+    opacity: 0.85;
+}
+
+/* Purple Back Section */
+.purple-back-section {
+    width: 100%;
+    background: rgba(36, 7, 66, 0.5);
+    border-top: 1px dashed rgba(192, 132, 252, 0.6);
+    border-bottom: 1px dashed rgba(192, 132, 252, 0.6);
+    border-radius: 8px;
+    padding: 10px 8px 12px;
+    margin: 8px 0;
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.4), 0 0 12px rgba(168, 85, 247, 0.35);
+}
+
+.purple-edition-title {
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 0.16em;
+    color: #e879f9;
+    text-shadow: 0 0 8px rgba(232, 121, 249, 0.85);
+    margin-bottom: 2px;
+}
+
+.purple-sub-badge {
+    font-family: 'Space Mono', monospace;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #f5d0fe;
+    margin-bottom: 8px;
+}
+
+.purple-visual-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.purple-disc-frame {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 1.5px solid #c084fc;
+    overflow: hidden;
+    box-shadow: 0 0 8px rgba(168, 85, 247, 0.6);
+}
+
+.purple-grid .sig-name {
+    color: #e879f9 !important;
+    text-shadow: 0 0 6px rgba(232, 121, 249, 0.8) !important;
+}
+
+.purple-grid .sig-role {
+    color: #f0abfc !important;
+}
+
+/* Individual Song Delete Button on Menu Items */
+.menu-item-del-btn {
+    background: none;
+    border: none;
+    color: #ef4444;
+    font-size: 11px;
+    padding: 2px 6px;
+    margin-left: auto;
+    margin-right: 6px;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.15s, transform 0.15s, color 0.15s;
+    border-radius: 3px;
+}
+
+.menu-item-del-btn:hover {
+    opacity: 1;
+    color: #f87171;
+    background: rgba(239, 68, 68, 0.2);
+    transform: scale(1.15);
+}
+
+.menu-item.selected .menu-item-del-btn {
+    color: #fee2e2;
+}
+
+.tool-pill-danger {
+    border-color: #ef4444 !important;
+    color: #fca5a5 !important;
+}
+
+.tool-pill-danger:hover {
+    background: rgba(239, 68, 68, 0.25) !important;
+    border-color: #f87171 !important;
+    color: #ffffff !important;
+}
+
+/* Lyrics Timing Offset Controls */
+.lyrics-offset-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: auto;
+}
+
+.lyrics-offset-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #cbd5e1;
+    font-size: 8.5px;
+    font-weight: 700;
+    padding: 2px 5px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.lyrics-offset-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.lyrics-offset-pill {
+    font-family: 'Space Mono', monospace;
+    font-size: 8.5px;
+    color: #38bdf8;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 1px 4px;
+    border-radius: 3px;
+    min-width: 26px;
+    text-align: center;
+}
+
+/* ========================================================
+   9. RETRO MUSIC QUIZ GAME STYLES
+   ======================================================== */
+.quiz-container {
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 20%, #1e293b 0%, #090d16 100%);
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    padding: 8px 10px;
+    overflow: hidden;
+}
+
+.quiz-top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 9px;
+    font-weight: 800;
+    font-family: 'Space Mono', monospace;
+    color: #38bdf8;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    padding-bottom: 4px;
+    flex-shrink: 0;
+}
+
+#quiz-score-badge {
+    color: #4ade80;
+}
+
+.quiz-status-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 6px 0 6px;
+    flex-shrink: 0;
+}
+
+.quiz-speaker-anim {
+    font-size: 22px;
+    color: #f43f5e;
+    margin-bottom: 2px;
+}
+
+.spin-vinyl {
+    animation: spin-disc 2.5s linear infinite;
+    display: inline-block;
+}
+
+@keyframes spin-disc {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.quiz-prompt-text {
+    font-size: 10.5px;
+    font-weight: 700;
+    text-align: center;
+    color: #f8fafc;
+    line-height: 1.3;
+}
+
+.quiz-timer-track {
+    width: 100%;
+    height: 5px;
+    background: #334155;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-top: 6px;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.quiz-timer-fill {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, #4ade80, #22c55e);
+    transition: width 0.1s linear, background 0.3s;
+}
+
+.quiz-timer-fill.warning {
+    background: linear-gradient(to right, #facc15, #eab308);
+}
+
+.quiz-timer-fill.danger {
+    background: linear-gradient(to right, #f87171, #ef4444);
+}
+
+.quiz-choices-list {
+    list-style: none;
+    padding: 0;
+    margin: 2px 0 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.quiz-choice-item {
+    padding: 6px 9px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    font-size: 10px;
+    font-weight: 600;
+    color: #e2e8f0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.12s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.quiz-choice-badge {
+    font-family: 'Space Mono', monospace;
+    font-size: 8.5px;
+    font-weight: 800;
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.15);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.quiz-choice-item.selected {
+    background: linear-gradient(to right, #0284c7, #0369a1);
+    border-color: #38bdf8;
+    color: #ffffff;
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+}
+
+.quiz-choice-item.selected .quiz-choice-badge {
+    background: #ffffff;
+    color: #0369a1;
+}
+
+.quiz-choice-item.correct {
+    background: linear-gradient(to right, #16a34a, #15803d) !important;
+    border-color: #4ade80 !important;
+    color: #ffffff !important;
+}
+
+.quiz-choice-item.wrong {
+    background: linear-gradient(to right, #dc2626, #b91c1c) !important;
+    border-color: #f87171 !important;
+    color: #ffffff !important;
+}
+
+.quiz-hint-footer {
+    font-size: 8px;
+    color: #94a3b8;
+    text-align: center;
+    margin-top: auto;
+    padding-top: 3px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    flex-shrink: 0;
+}
+
+/* 7. RESPONSIVE DESIGN (MOBILE & TABLET VIEWPORT ENGINE) */
+@media (max-width: 600px) {
+    body {
+        padding: 16px 8px 95px !important;
+        align-items: flex-start;
+    }
+
+    .desk-canvas {
+        gap: 12px;
+        max-width: 100%;
+    }
+
+    /* Fixed Mobile Action Bar at Bottom of Screen */
+    .quick-toolbar {
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        background: rgba(10, 15, 29, 0.94) !important;
+        backdrop-filter: blur(16px) !important;
+        -webkit-backdrop-filter: blur(16px) !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.14) !important;
+        padding: 10px 14px calc(10px + env(safe-area-inset-bottom, 10px)) !important;
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        justify-content: flex-start !important;
+        align-items: center !important;
+        gap: 8px !important;
+        z-index: 99999 !important;
+        box-shadow: 0 -6px 25px rgba(0, 0, 0, 0.7) !important;
+    }
+
+    .quick-toolbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .tool-pill {
+        flex-shrink: 0 !important;
+        padding: 8px 14px !important;
+        font-size: 11.5px !important;
+        white-space: nowrap !important;
+    }
+
+    .tool-group {
+        flex-shrink: 0 !important;
+    }
+}
+
+@media (max-width: 440px) {
+    .ipod-top-bar {
+        transform: scale(0.88);
+        -webkit-transform: scale(0.88);
+        transform-origin: top center;
+        margin-bottom: -22px;
+    }
+
+    .ipod-3d-scene {
+        transform: scale(0.88);
+        -webkit-transform: scale(0.88);
+        transform-origin: top center;
+        margin-bottom: -65px;
+    }
+}
+
+@media (max-width: 375px) {
+    .ipod-top-bar {
+        transform: scale(0.78);
+        -webkit-transform: scale(0.78);
+        transform-origin: top center;
+        margin-bottom: -24px;
+    }
+
+    .ipod-3d-scene {
+        transform: scale(0.78);
+        -webkit-transform: scale(0.78);
+        transform-origin: top center;
+        margin-bottom: -125px;
+    }
+}
